@@ -6,7 +6,8 @@ enterButton.addEventListener("click", () => {
     enterButton.disabled = true;
     enterButton.textContent = "OPENING...";
 
-    openingScreen.style.transition = "opacity 1s ease";
+    // Fade out the first screen
+    openingScreen.style.transition = "opacity 1.5s ease";
     openingScreen.style.opacity = "0";
 
     setTimeout(() => {
@@ -16,455 +17,378 @@ enterButton.addEventListener("click", () => {
         birthdayAnimation.innerHTML = `
             <div class="gate-scene">
 
-                <!-- Dark opening -->
-                <div class="scene-dark"></div>
+                <div class="night-sky">
+                    <div class="moon"></div>
+                    <div class="star star1"></div>
+                    <div class="star star2"></div>
+                    <div class="star star3"></div>
+                    <div class="star star4"></div>
+                    <div class="star star5"></div>
+                    <div class="star star6"></div>
+                </div>
 
-                <!-- Night background -->
-                <div class="night-background">
+                <div class="welcome-text">
+                    Welcome to the party, my cutiee...!! 💗
+                </div>
 
-                    <!-- Moon -->
-                    <div class="scene-moon"></div>
+                <div class="ground"></div>
 
-                    <!-- Stars -->
-                    <div class="scene-stars"></div>
+                <div class="character">
+                    <img src="1788853009972.png" alt="Character">
+                </div>
 
-                    <!-- Big Gate -->
-                    <div class="big-gate" id="bigGate">
+                <div class="gate-area">
 
-                        <div class="gate-arch">
-                            <div class="gate-decoration">✦</div>
+                    <div class="gate">
+                        <div class="gate-top"></div>
+
+                        <div class="gate-left">
+                            <div class="gate-detail"></div>
+                            <div class="gate-detail"></div>
+                            <div class="gate-detail"></div>
                         </div>
 
-                        <div class="gate-left"></div>
-                        <div class="gate-right"></div>
+                        <div class="gate-right">
+                            <div class="gate-detail"></div>
+                            <div class="gate-detail"></div>
+                            <div class="gate-detail"></div>
+                        </div>
 
-                        <div class="gate-handle"></div>
+                        <div class="gate-middle"></div>
                     </div>
 
-                    <!-- Him approaching -->
-                    <div class="walking-character" id="walkingCharacter">
-                        <img src="couple.png" alt="Birthday character">
+                    <div class="knock-text">
+                        Knock... Knock...
                     </div>
-
-                    <!-- Knock text -->
-                    <div class="knock-message" id="knockMessage">
-                        knock knock...
-                    </div>
-
-                    <!-- Welcome -->
-                    <div class="party-welcome" id="partyWelcome">
-                        <h1>Welcome to the party,<br>my cutiee...!! 💗</h1>
-                    </div>
-
-                    <!-- Continue -->
-                    <button id="letsGoButton">
-                        LET'S GO →
-                    </button>
 
                 </div>
+
+                <button id="letsGoButton">LET'S GO →</button>
+
             </div>
         `;
 
         addGateStyles();
-        startGateAnimation();
 
-    }, 1000);
-});
-
-
-function startGateAnimation() {
-
-    const sceneDark = document.querySelector(".scene-dark");
-    const character = document.getElementById("walkingCharacter");
-    const gate = document.getElementById("bigGate");
-    const knockMessage = document.getElementById("knockMessage");
-    const welcome = document.getElementById("partyWelcome");
-    const letsGo = document.getElementById("letsGoButton");
-
-    // Slowly reveal the scene
-    setTimeout(() => {
-        sceneDark.classList.add("opening");
-    }, 400);
-
-    // Character starts walking toward gate
-    setTimeout(() => {
-        character.classList.add("walk");
-    }, 1200);
-
-    // Character reaches the gate
-    setTimeout(() => {
-        character.classList.add("arrived");
-    }, 3500);
-
-    // Knock moment
-    setTimeout(() => {
-        knockMessage.classList.add("show");
-
-        // Gate reacts to the knock
-        gate.classList.add("knock");
-
-    }, 4200);
-
-    // Stop gate vibration
-    setTimeout(() => {
-        gate.classList.remove("knock");
-    }, 4650);
-
-    // Welcome appears
-    setTimeout(() => {
-        welcome.classList.add("show");
-        letsGo.classList.add("show");
-    }, 5000);
-
-
-    letsGo.addEventListener("click", () => {
-
-        letsGo.textContent = "LET'S GO... ✨";
-        letsGo.disabled = true;
-
-        gate.classList.add("opening-gate");
-
+        // Character walks toward the gate
         setTimeout(() => {
-            alert("Birthday party coming next! 🎂");
-        }, 1500);
-    });
-}
+            document.querySelector(".character").classList.add("walking");
+        }, 500);
+
+        // Knock happens after he reaches the gate
+        setTimeout(() => {
+            const gate = document.querySelector(".gate");
+            const knockText = document.querySelector(".knock-text");
+
+            gate.classList.add("knocking");
+            knockText.classList.add("show");
+
+            setTimeout(() => {
+                gate.classList.remove("knocking");
+            }, 700);
+
+        }, 4200);
+
+        // LET'S GO
+        setTimeout(() => {
+            document.getElementById("letsGoButton").classList.add("show");
+        }, 5200);
+
+        document.getElementById("letsGoButton").addEventListener("click", () => {
+
+            const gate = document.querySelector(".gate");
+
+            gate.classList.add("opening");
+
+            document.getElementById("letsGoButton").style.display = "none";
+
+            setTimeout(() => {
+                alert("Party time! 🎉");
+            }, 1800);
+        });
+
+    }, 1500);
+});
 
 
 function addGateStyles() {
 
     const style = document.createElement("style");
 
-    style.textContent = `
+    style.innerHTML = `
 
-        * {
-            box-sizing: border-box;
-        }
+    .gate-scene {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        background: #05030a;
+        font-family: Arial, sans-serif;
+    }
 
-        .gate-scene {
-            width: 100%;
-            min-height: 100vh;
-            min-height: 100svh;
-            overflow: hidden;
-            background: #02030b;
-        }
+    .night-sky {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 70% 20%, rgba(100,70,130,.25), transparent 35%),
+            linear-gradient(to bottom, #03020a, #090615 65%, #120c17);
+    }
 
-        .night-background {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            min-height: 100svh;
-            overflow: hidden;
+    .moon {
+        position: absolute;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: #f5edf7;
+        top: 10%;
+        right: 12%;
+        box-shadow: 0 0 40px rgba(255,240,255,.35);
+    }
 
-            background:
-                radial-gradient(
-                    circle at 50% 35%,
-                    #171b38 0%,
-                    #090b1d 45%,
-                    #02030b 100%
-                );
-        }
+    .star {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: white;
+        border-radius: 50%;
+        opacity: .8;
+    }
 
-        /* Slow black opening */
+    .star1 { top: 15%; left: 12%; }
+    .star2 { top: 25%; left: 28%; }
+    .star3 { top: 12%; left: 48%; }
+    .star4 { top: 35%; left: 78%; }
+    .star5 { top: 42%; left: 20%; }
+    .star6 { top: 18%; left: 88%; }
 
-        .scene-dark {
-            position: absolute;
-            inset: 0;
-            z-index: 30;
-            background: #000;
+    .ground {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 28%;
+        background: linear-gradient(to top, #050306, transparent);
+    }
+
+    .welcome-text {
+        position: absolute;
+        top: 30px;
+        right: 35px;
+        z-index: 20;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        opacity: 0;
+        animation: welcomeIn 1s ease forwards;
+        animation-delay: 2s;
+        text-shadow: 0 0 12px rgba(255,255,255,.25);
+    }
+
+    @keyframes welcomeIn {
+        to {
             opacity: 1;
-            transition: opacity 2.5s ease;
-            pointer-events: none;
+        }
+    }
+
+    /* CHARACTER */
+
+    .character {
+        position: absolute;
+        bottom: 12%;
+        left: -220px;
+        z-index: 10;
+        width: 180px;
+        transition: left 3.5s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .character img {
+        width: 100%;
+        display: block;
+    }
+
+    .character.walking {
+        left: calc(50% - 300px);
+    }
+
+    /* BIG GATE */
+
+    .gate-area {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 8;
+    }
+
+    .gate {
+        width: 430px;
+        height: 500px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        transform-origin: bottom center;
+        transition: transform 1.6s ease;
+    }
+
+    .gate-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 430px;
+        height: 100px;
+        background: linear-gradient(135deg,#19131d,#403344,#17121c);
+        clip-path: polygon(50% 0,100% 55%,100% 100%,0 100%,0 55%);
+        border: 3px solid #75647c;
+        box-sizing: border-box;
+    }
+
+    .gate-left,
+    .gate-right {
+        position: absolute;
+        bottom: 0;
+        width: 205px;
+        height: 410px;
+        background:
+            repeating-linear-gradient(
+                90deg,
+                #151018 0px,
+                #151018 22px,
+                #332839 23px,
+                #332839 27px
+            );
+        border: 4px solid #75647c;
+        box-sizing: border-box;
+        transition: transform 1.6s ease;
+    }
+
+    .gate-left {
+        left: 0;
+        transform-origin: left center;
+    }
+
+    .gate-right {
+        right: 0;
+        transform-origin: right center;
+    }
+
+    .gate-detail {
+        width: 70%;
+        height: 55px;
+        margin: 45px auto 0;
+        border: 2px solid #806d87;
+        border-radius: 50%;
+        opacity: .55;
+    }
+
+    .gate-middle {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 12px;
+        height: 410px;
+        background: #8a748d;
+        opacity: .5;
+    }
+
+    .knocking {
+        animation: gateShake .12s linear 5;
+    }
+
+    @keyframes gateShake {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(5px); }
+        100% { transform: translateX(-5px); }
+    }
+
+    .knock-text {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: -45px;
+        color: white;
+        font-size: 17px;
+        opacity: 0;
+        transition: opacity .5s ease;
+    }
+
+    .knock-text.show {
+        opacity: 1;
+    }
+
+    /* GATE OPENS */
+
+    .gate.opening .gate-left {
+        transform: perspective(600px) rotateY(-75deg);
+    }
+
+    .gate.opening .gate-right {
+        transform: perspective(600px) rotateY(75deg);
+    }
+
+    #letsGoButton {
+        position: absolute;
+        bottom: 35px;
+        right: 40px;
+        z-index: 30;
+        padding: 14px 25px;
+        border: 1px solid rgba(255,255,255,.5);
+        border-radius: 30px;
+        background: rgba(20,15,25,.8);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(15px);
+        transition: .5s ease;
+    }
+
+    #letsGoButton.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+
+        .welcome-text {
+            top: 20px;
+            right: 15px;
+            font-size: 15px;
         }
 
-        .scene-dark.opening {
-            opacity: 0;
+        .gate {
+            width: 300px;
+            height: 380px;
         }
 
-        /* Stars */
-
-        .scene-stars {
-            position: absolute;
-            inset: 0;
-
-            background-image:
-                radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
-                radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1.5px);
-
-            background-size: 100px 100px, 170px 170px;
-            background-position: 20px 30px, 80px 90px;
-
-            opacity: .5;
-        }
-
-        /* Moon */
-
-        .scene-moon {
-            position: absolute;
-            top: 8%;
-            right: 12%;
-
-            width: 85px;
-            height: 85px;
-
-            border-radius: 50%;
-
-            background: #fff7d6;
-
-            box-shadow:
-                0 0 25px rgba(255,247,214,.35),
-                0 0 70px rgba(255,247,214,.12);
-        }
-
-        /* BIG GATE */
-
-        .big-gate {
-            position: absolute;
-
-            left: 50%;
-            bottom: 12%;
-
-            transform: translateX(-50%);
-
-            width: min(78vw, 430px);
-            height: min(65vh, 520px);
-
-            z-index: 5;
-
-            transition:
-                transform 1.5s ease,
-                opacity 1.5s ease;
-        }
-
-        .gate-arch {
-            position: absolute;
-
-            left: 4%;
-            top: 0;
-
-            width: 92%;
-            height: 23%;
-
-            border: 8px solid #9d8253;
-            border-bottom: none;
-
-            border-radius: 220px 220px 0 0;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #18151b,
-                    #292331,
-                    #18151b
-                );
-
-            box-shadow:
-                inset 0 0 25px rgba(255,220,150,.08),
-                0 0 20px rgba(0,0,0,.7);
-        }
-
-        .gate-decoration {
-            text-align: center;
-            padding-top: 18px;
-
-            color: #e6c98b;
-            font-size: 28px;
+        .gate-top {
+            width: 300px;
         }
 
         .gate-left,
         .gate-right {
-            position: absolute;
-
-            top: 19%;
-            bottom: 0;
-
-            width: 50%;
-
-            border: 7px solid #9d8253;
-
-            background:
-                repeating-linear-gradient(
-                    90deg,
-                    #17151d 0px,
-                    #17151d 28px,
-                    #24212b 30px,
-                    #17151d 33px
-                );
-
-            box-shadow:
-                inset 0 0 30px rgba(0,0,0,.7);
+            width: 145px;
+            height: 310px;
         }
 
-        .gate-left {
-            left: 0;
-            border-right: 3px solid #806844;
+        .gate-middle {
+            height: 310px;
         }
 
-        .gate-right {
-            right: 0;
-            border-left: 3px solid #806844;
+        .character {
+            width: 130px;
         }
 
-        .gate-handle {
-            position: absolute;
-
-            left: 50%;
-            top: 54%;
-
-            width: 22px;
-            height: 22px;
-
-            transform: translateX(-50%);
-
-            border-radius: 50%;
-
-            background: #d2b475;
-
-            box-shadow:
-                0 0 12px rgba(220,190,120,.3);
+        .character.walking {
+            left: calc(50% - 200px);
         }
-
-        /* Gate vibration */
-
-        .big-gate.knock {
-            animation: gateKnock .12s linear 4;
-        }
-
-        @keyframes gateKnock {
-
-            0% {
-                transform: translateX(-50%);
-            }
-
-            25% {
-                transform: translateX(calc(-50% - 5px));
-            }
-
-            50% {
-                transform: translateX(calc(-50% + 5px));
-            }
-
-            75% {
-                transform: translateX(calc(-50% - 3px));
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Character */
-
-        .walking-character {
-            position: absolute;
-
-            left: -220px;
-            bottom: 16%;
-
-            z-index: 8;
-
-            opacity: 0;
-
-            transition:
-                left 2.2s cubic-bezier(.25,.8,.25,1),
-                opacity .8s ease;
-        }
-
-        .walking-character img {
-            width: min(75vw, 320px);
-
-            border-radius: 20px;
-
-            box-shadow:
-                0 10px 35px rgba(0,0,0,.5);
-        }
-
-        .walking-character.walk {
-            opacity: 1;
-            left: 23%;
-        }
-
-        .walking-character.arrived {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Knock text */
-
-        .knock-message {
-            position: absolute;
-
-            left: 50%;
-            bottom: 7%;
-
-            transform: translateX(-50%) translateY(10px);
-
-            z-index: 15;
-
-            font-family: Arial, sans-serif;
-
-            color: #eee;
-
-            font-size: 17px;
-
-            opacity: 0;
-
-            transition:
-                opacity .6s ease,
-                transform .6s ease;
-        }
-
-        .knock-message.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Welcome */
-
-        .party-welcome {
-            position: absolute;
-
-            top: 7%;
-            right: 5%;
-
-            z-index: 20;
-
-            max-width: 75%;
-
-            opacity: 0;
-            transform: translateY(-15px);
-
-            transition:
-                opacity .8s ease,
-                transform .8s ease;
-        }
-
-        .party-welcome.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .party-welcome h1 {
-            margin: 0;
-
-            font-family: Georgia, serif;
-
-            font-size: clamp(20px, 5vw, 32px);
-
-            line-height: 1.25;
-
-            text-align: right;
-
-            color: #f8e7ed;
-
-            text-shadow:
-                0 0 15px rgba(255,210,225,.25);
-        }
-
-        /* Let's go */
 
         #letsGoButton {
-            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+    }
 
-            bottom: 6%;
-           
+    `;
+
+    document.head.appendChild(style);
+}
