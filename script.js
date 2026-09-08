@@ -145,11 +145,17 @@ enterButton.addEventListener("click", () => {
          */
         setTimeout(() => {
 
-            const gate = document.querySelector(".gate");
+    const gate = document.querySelector(".gate");
 
-            gate.classList.add("opening");
+    gate.classList.add("opening");
 
-        }, 7800);
+    setTimeout(() => {
+
+        startPartyScene();
+
+    }, 1700);
+
+}, 7800);
 
     }, 1800);
 });
