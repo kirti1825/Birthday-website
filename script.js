@@ -6,8 +6,7 @@ enterButton.addEventListener("click", () => {
     enterButton.disabled = true;
     enterButton.textContent = "OPENING...";
 
-    // Fade out the first screen
-    openingScreen.style.transition = "opacity 1.5s ease";
+    openingScreen.style.transition = "opacity 1.8s ease";
     openingScreen.style.opacity = "0";
 
     setTimeout(() => {
@@ -17,66 +16,106 @@ enterButton.addEventListener("click", () => {
         birthdayAnimation.innerHTML = `
             <div class="gate-scene">
 
+                <!-- NIGHT SKY -->
                 <div class="night-sky">
+
                     <div class="moon"></div>
-                    <div class="star star1"></div>
-                    <div class="star star2"></div>
-                    <div class="star star3"></div>
-                    <div class="star star4"></div>
-                    <div class="star star5"></div>
-                    <div class="star star6"></div>
+
+                    <div class="stars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
                 </div>
 
-                <div class="welcome-text">
-                    Welcome to the party, my cutiee...!! 💗
-                </div>
-
+                <!-- GROUND -->
                 <div class="ground"></div>
 
+                <!-- BOY -->
                 <div class="character">
-                    <img src="1788853009972.png" alt="Character">
+                    <img src="1788853009972.png" alt="">
                 </div>
 
+                <!-- BIG WOODEN GATE -->
                 <div class="gate-area">
 
                     <div class="gate">
-                        <div class="gate-top"></div>
+
+                        <div class="gate-roof">
+                            <div class="roof-detail"></div>
+                        </div>
 
                         <div class="gate-left">
-                            <div class="gate-detail"></div>
-                            <div class="gate-detail"></div>
-                            <div class="gate-detail"></div>
+                            <div class="wood-panel"></div>
+                            <div class="wood-panel"></div>
+                            <div class="wood-panel"></div>
+
+                            <div class="metal-decoration top"></div>
+                            <div class="metal-decoration bottom"></div>
                         </div>
 
                         <div class="gate-right">
-                            <div class="gate-detail"></div>
-                            <div class="gate-detail"></div>
-                            <div class="gate-detail"></div>
+                            <div class="wood-panel"></div>
+                            <div class="wood-panel"></div>
+                            <div class="wood-panel"></div>
+
+                            <div class="metal-decoration top"></div>
+                            <div class="metal-decoration bottom"></div>
                         </div>
 
-                        <div class="gate-middle"></div>
+                        <div class="gate-handle"></div>
+
                     </div>
 
                     <div class="knock-text">
-                        Knock... Knock...
+                        knock... knock...
                     </div>
 
                 </div>
 
-                <button id="letsGoButton">LET'S GO →</button>
+                <!-- CENTER WELCOME MESSAGE -->
+                <div class="welcome-message">
+                    Welcome to the party, my cutiee...!! 💗
+                </div>
 
             </div>
         `;
 
         addGateStyles();
 
-        // Character walks toward the gate
+        /*
+         * BOY WALKS TOWARD THE GATE
+         */
         setTimeout(() => {
-            document.querySelector(".character").classList.add("walking");
-        }, 500);
+            document
+                .querySelector(".character")
+                .classList.add("walking");
+        }, 700);
 
-        // Knock happens after he reaches the gate
+
+        /*
+         * KNOCK
+         */
         setTimeout(() => {
+
             const gate = document.querySelector(".gate");
             const knockText = document.querySelector(".knock-text");
 
@@ -87,29 +126,58 @@ enterButton.addEventListener("click", () => {
                 gate.classList.remove("knocking");
             }, 700);
 
-        }, 4200);
+        }, 4300);
 
-        // LET'S GO
+
+        /*
+         * WELCOME MESSAGE
+         */
         setTimeout(() => {
-            document.getElementById("letsGoButton").classList.add("show");
-        }, 5200);
+            document
+                .querySelector(".welcome-message")
+                .classList.add("show");
+        }, 4700);
 
-        document.getElementById("letsGoButton").addEventListener("click", () => {
+
+        /*
+         * KEEP SCREEN FOR A FEW SECONDS,
+         * THEN OPEN THE GATE AUTOMATICALLY
+         */
+        setTimeout(() => {
 
             const gate = document.querySelector(".gate");
 
             gate.classList.add("opening");
 
-            document.getElementById("letsGoButton").style.display = "none";
+        }, 7800);
 
-            setTimeout(() => {
-                alert("Party time! 🎉");
-            }, 1800);
-        });
 
-    }, 1500);
+        /*
+         * AFTER GATE OPENS → NEXT SCENE
+         */
+        setTimeout(() => {
+
+            birthdayAnimation.innerHTML = `
+                <div class="party-transition">
+                    <div class="party-title">
+                        The party begins... ✨
+                    </div>
+                </div>
+            `;
+
+            addPartyTransitionStyles();
+
+        }, 9500);
+
+    }, 1800);
 });
 
+
+/*
+==================================================
+GATE SCENE STYLES
+==================================================
+*/
 
 function addGateStyles() {
 
@@ -121,270 +189,716 @@ function addGateStyles() {
         position: fixed;
         inset: 0;
         overflow: hidden;
-        background: #05030a;
-        font-family: Arial, sans-serif;
+        background: #030207;
+        font-family: Georgia, "Times New Roman", serif;
     }
+
+
+    /* =========================
+       NIGHT SKY
+    ========================= */
 
     .night-sky {
         position: absolute;
         inset: 0;
+
         background:
-            radial-gradient(circle at 70% 20%, rgba(100,70,130,.25), transparent 35%),
-            linear-gradient(to bottom, #03020a, #090615 65%, #120c17);
+            radial-gradient(
+                circle at 50% 40%,
+                rgba(67, 48, 75, 0.25),
+                transparent 42%
+            ),
+            radial-gradient(
+                circle at 75% 15%,
+                rgba(80, 55, 90, 0.16),
+                transparent 30%
+            ),
+            linear-gradient(
+                to bottom,
+                #020208 0%,
+                #070511 55%,
+                #100a13 100%
+            );
+
+        animation: skyReveal 3s ease forwards;
     }
 
-    .moon {
-        position: absolute;
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        background: #f5edf7;
-        top: 10%;
-        right: 12%;
-        box-shadow: 0 0 40px rgba(255,240,255,.35);
-    }
 
-    .star {
-        position: absolute;
-        width: 3px;
-        height: 3px;
-        background: white;
-        border-radius: 50%;
-        opacity: .8;
-    }
+    @keyframes skyReveal {
+        from {
+            opacity: 0;
+        }
 
-    .star1 { top: 15%; left: 12%; }
-    .star2 { top: 25%; left: 28%; }
-    .star3 { top: 12%; left: 48%; }
-    .star4 { top: 35%; left: 78%; }
-    .star5 { top: 42%; left: 20%; }
-    .star6 { top: 18%; left: 88%; }
-
-    .ground {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 28%;
-        background: linear-gradient(to top, #050306, transparent);
-    }
-
-    .welcome-text {
-        position: absolute;
-        top: 30px;
-        right: 35px;
-        z-index: 20;
-        color: #fff;
-        font-size: 20px;
-        font-weight: 500;
-        opacity: 0;
-        animation: welcomeIn 1s ease forwards;
-        animation-delay: 2s;
-        text-shadow: 0 0 12px rgba(255,255,255,.25);
-    }
-
-    @keyframes welcomeIn {
         to {
             opacity: 1;
         }
     }
 
-    /* CHARACTER */
+
+    /* =========================
+       MOON
+    ========================= */
+
+    .moon {
+        position: absolute;
+
+        width: 105px;
+        height: 105px;
+
+        right: 13%;
+        top: 10%;
+
+        border-radius: 50%;
+
+        background:
+            radial-gradient(
+                circle at 35% 30%,
+                #fffdfb,
+                #eee6e6 65%,
+                #d7ced1
+            );
+
+        box-shadow:
+            0 0 20px rgba(255,255,255,.22),
+            0 0 55px rgba(255,235,250,.12);
+
+        animation: moonGlow 4s ease-in-out infinite alternate;
+    }
+
+
+    @keyframes moonGlow {
+
+        from {
+            box-shadow:
+                0 0 18px rgba(255,255,255,.20),
+                0 0 40px rgba(255,235,250,.08);
+        }
+
+        to {
+            box-shadow:
+                0 0 28px rgba(255,255,255,.32),
+                0 0 70px rgba(255,235,250,.16);
+        }
+    }
+
+
+    /* =========================
+       TWINKLING STARS
+    ========================= */
+
+    .stars {
+        position: absolute;
+        inset: 0;
+    }
+
+    .stars span {
+        position: absolute;
+
+        width: 3px;
+        height: 3px;
+
+        border-radius: 50%;
+
+        background: white;
+
+        box-shadow: 0 0 7px white;
+
+        animation:
+            twinkle 2.5s ease-in-out infinite alternate;
+    }
+
+    .stars span:nth-child(1)  { top: 12%; left: 8%;  animation-delay: .2s; }
+    .stars span:nth-child(2)  { top: 20%; left: 18%; animation-delay: 1s; }
+    .stars span:nth-child(3)  { top: 8%;  left: 32%; animation-delay: .5s; }
+    .stars span:nth-child(4)  { top: 27%; left: 42%; animation-delay: 1.6s; }
+    .stars span:nth-child(5)  { top: 14%; left: 55%; animation-delay: .8s; }
+    .stars span:nth-child(6)  { top: 31%; left: 65%; animation-delay: 1.3s; }
+    .stars span:nth-child(7)  { top: 18%; left: 78%; animation-delay: .4s; }
+    .stars span:nth-child(8)  { top: 38%; left: 88%; animation-delay: 1.8s; }
+    .stars span:nth-child(9)  { top: 43%; left: 12%; animation-delay: 1.1s; }
+    .stars span:nth-child(10) { top: 36%; left: 28%; animation-delay: .6s; }
+    .stars span:nth-child(11) { top: 45%; left: 52%; animation-delay: 1.5s; }
+    .stars span:nth-child(12) { top: 50%; left: 72%; animation-delay: .9s; }
+    .stars span:nth-child(13) { top: 25%; left: 94%; animation-delay: 1.7s; }
+    .stars span:nth-child(14) { top: 10%; left: 67%; animation-delay: .3s; }
+    .stars span:nth-child(15) { top: 55%; left: 38%; animation-delay: 1.4s; }
+    .stars span:nth-child(16) { top: 33%; left: 5%;  animation-delay: .7s; }
+    .stars span:nth-child(17) { top: 48%; left: 82%; animation-delay: 1.9s; }
+    .stars span:nth-child(18) { top: 16%; left: 46%; animation-delay: 1.2s; }
+    .stars span:nth-child(19) { top: 29%; left: 72%; animation-delay: .1s; }
+    .stars span:nth-child(20) { top: 41%; left: 59%; animation-delay: 1.6s; }
+
+
+    @keyframes twinkle {
+
+        0% {
+            opacity: .15;
+            transform: scale(.7);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1.5);
+        }
+
+        100% {
+            opacity: .25;
+            transform: scale(.8);
+        }
+    }
+
+
+    /* =========================
+       GROUND
+    ========================= */
+
+    .ground {
+        position: absolute;
+
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 28%;
+
+        background:
+            linear-gradient(
+                to top,
+                #020103,
+                rgba(5,3,8,.92),
+                transparent
+            );
+    }
+
+
+    /* =========================
+       CHARACTER
+    ========================= */
 
     .character {
+
         position: absolute;
-        bottom: 12%;
+
         left: -220px;
+        bottom: 10%;
+
+        width: 170px;
+
         z-index: 10;
-        width: 180px;
-        transition: left 3.5s cubic-bezier(.2,.7,.2,1);
+
+        transition:
+            left 3.6s cubic-bezier(.15,.7,.2,1);
     }
+
 
     .character img {
         width: 100%;
+        height: auto;
         display: block;
     }
 
+
     .character.walking {
+
         left: calc(50% - 300px);
     }
 
-    /* BIG GATE */
+
+    /* =========================
+       BIG WOODEN GATE
+    ========================= */
 
     .gate-area {
+
         position: absolute;
-        bottom: 10%;
+
         left: 50%;
+        bottom: 7%;
+
         transform: translateX(-50%);
+
         z-index: 8;
     }
 
+
     .gate {
-        width: 430px;
-        height: 500px;
+
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
+
+        width: 440px;
+        height: 510px;
+
         transform-origin: bottom center;
-        transition: transform 1.6s ease;
+
+        transition: transform 1.7s ease;
     }
 
-    .gate-top {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 430px;
-        height: 100px;
-        background: linear-gradient(135deg,#19131d,#403344,#17121c);
-        clip-path: polygon(50% 0,100% 55%,100% 100%,0 100%,0 55%);
-        border: 3px solid #75647c;
-        box-sizing: border-box;
-    }
+
+    /* WOODEN DOOR */
 
     .gate-left,
     .gate-right {
+
         position: absolute;
+
         bottom: 0;
-        width: 205px;
+
+        width: 210px;
         height: 410px;
+
+        overflow: hidden;
+
+        border: 6px solid #352017;
+
+        box-sizing: border-box;
+
         background:
+
             repeating-linear-gradient(
                 90deg,
-                #151018 0px,
-                #151018 22px,
-                #332839 23px,
-                #332839 27px
+                #4b2b1c 0px,
+                #5b3623 28px,
+                #3d2418 32px,
+                #623b26 65px
             );
-        border: 4px solid #75647c;
-        box-sizing: border-box;
-        transition: transform 1.6s ease;
+
+        box-shadow:
+            inset 0 0 35px rgba(0,0,0,.65),
+            0 12px 30px rgba(0,0,0,.5);
+
+        transition:
+            transform 1.7s cubic-bezier(.2,.7,.2,1);
     }
+
 
     .gate-left {
         left: 0;
         transform-origin: left center;
     }
 
+
     .gate-right {
         right: 0;
         transform-origin: right center;
     }
 
-    .gate-detail {
-        width: 70%;
-        height: 55px;
-        margin: 45px auto 0;
-        border: 2px solid #806d87;
-        border-radius: 50%;
-        opacity: .55;
+
+    /* WOOD PANELS */
+
+    .wood-panel {
+
+        width: 72%;
+        height: 80px;
+
+        margin: 28px auto;
+
+        border: 3px solid #24150f;
+
+        background:
+            linear-gradient(
+                90deg,
+                #613a25,
+                #70442a,
+                #4a2b1b
+            );
+
+        box-shadow:
+            inset 0 0 12px rgba(0,0,0,.45);
     }
 
-    .gate-middle {
+
+    /* METAL DECORATION */
+
+    .metal-decoration {
+
         position: absolute;
-        bottom: 0;
+
         left: 50%;
-        transform: translateX(-50%);
-        width: 12px;
-        height: 410px;
-        background: #8a748d;
-        opacity: .5;
+
+        width: 90px;
+        height: 90px;
+
+        transform: translateX(-50%) rotate(45deg);
+
+        border: 4px solid #8a6b50;
+
+        box-shadow:
+            0 0 8px rgba(190,160,120,.15);
     }
+
+
+    .metal-decoration.top {
+        top: 65px;
+    }
+
+
+    .metal-decoration.bottom {
+        bottom: 50px;
+    }
+
+
+    /* GATE ROOF */
+
+    .gate-roof {
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 440px;
+        height: 110px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #291b16,
+                #5a3826,
+                #281a15
+            );
+
+        clip-path:
+            polygon(
+                50% 0,
+                100% 55%,
+                100% 100%,
+                0 100%,
+                0 55%
+            );
+
+        border: 5px solid #382319;
+
+        box-sizing: border-box;
+
+        box-shadow:
+            0 10px 20px rgba(0,0,0,.5);
+    }
+
+
+    .roof-detail {
+
+        position: absolute;
+
+        width: 28px;
+        height: 28px;
+
+        left: 50%;
+        top: 28px;
+
+        transform:
+            translateX(-50%)
+            rotate(45deg);
+
+        border: 4px solid #9b795c;
+    }
+
+
+    /* GATE HANDLE */
+
+    .gate-handle {
+
+        position: absolute;
+
+        width: 18px;
+        height: 18px;
+
+        left: 50%;
+        bottom: 47%;
+
+        transform: translateX(-50%);
+
+        border-radius: 50%;
+
+        background: #b08a65;
+
+        box-shadow:
+            0 0 10px rgba(180,140,100,.3);
+
+        z-index: 5;
+    }
+
+
+    /* =========================
+       KNOCK
+    ========================= */
 
     .knocking {
-        animation: gateShake .12s linear 5;
+
+        animation:
+            gateShake .12s linear 6;
     }
+
 
     @keyframes gateShake {
-        0% { transform: translateX(0); }
-        50% { transform: translateX(5px); }
-        100% { transform: translateX(-5px); }
+
+        0% {
+            transform: translateX(0);
+        }
+
+        25% {
+            transform: translateX(-4px);
+        }
+
+        50% {
+            transform: translateX(5px);
+        }
+
+        75% {
+            transform: translateX(-4px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
     }
+
 
     .knock-text {
+
         position: absolute;
+
+        top: -42px;
+
         width: 100%;
+
         text-align: center;
-        top: -45px;
-        color: white;
+
+        color: #e9dcd5;
+
+        font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
         font-size: 17px;
+
+        letter-spacing: 2px;
+
         opacity: 0;
-        transition: opacity .5s ease;
+
+        transition:
+            opacity .7s ease;
     }
+
 
     .knock-text.show {
-        opacity: 1;
+        opacity: .9;
     }
 
-    /* GATE OPENS */
+
+    /* =========================
+       CENTER WELCOME MESSAGE
+    ========================= */
+
+    .welcome-message {
+
+        position: absolute;
+
+        z-index: 30;
+
+        left: 50%;
+        top: 50%;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(20px);
+
+        width: 90%;
+
+        text-align: center;
+
+        color: #fff5f8;
+
+        font-family:
+            "Brush Script MT",
+            "Segoe Script",
+            cursive;
+
+        font-size: clamp(28px, 5vw, 55px);
+
+        line-height: 1.2;
+
+        letter-spacing: 1px;
+
+        text-shadow:
+            0 0 8px rgba(255,220,235,.35),
+            0 0 25px rgba(255,180,210,.15);
+
+        opacity: 0;
+
+        transition:
+            opacity 1.2s ease,
+            transform 1.2s ease;
+    }
+
+
+    .welcome-message.show {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            translateY(0);
+    }
+
+
+    /* =========================
+       GATE OPENING
+    ========================= */
 
     .gate.opening .gate-left {
-        transform: perspective(600px) rotateY(-75deg);
+
+        transform:
+            perspective(900px)
+            rotateY(-82deg);
     }
+
 
     .gate.opening .gate-right {
-        transform: perspective(600px) rotateY(75deg);
+
+        transform:
+            perspective(900px)
+            rotateY(82deg);
     }
 
-    #letsGoButton {
-        position: absolute;
-        bottom: 35px;
-        right: 40px;
-        z-index: 30;
-        padding: 14px 25px;
-        border: 1px solid rgba(255,255,255,.5);
-        border-radius: 30px;
-        background: rgba(20,15,25,.8);
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-        opacity: 0;
-        transform: translateY(15px);
-        transition: .5s ease;
-    }
 
-    #letsGoButton.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 600px) {
 
-        .welcome-text {
-            top: 20px;
-            right: 15px;
-            font-size: 15px;
+        .moon {
+
+            width: 70px;
+            height: 70px;
+
+            right: 10%;
+            top: 9%;
         }
+
+
+        .character {
+
+            width: 125px;
+            bottom: 10%;
+        }
+
+
+        .character.walking {
+
+            left: calc(50% - 205px);
+        }
+
 
         .gate {
-            width: 300px;
-            height: 380px;
+
+            width: 310px;
+            height: 390px;
         }
 
-        .gate-top {
-            width: 300px;
+
+        .gate-roof {
+
+            width: 310px;
+            height: 85px;
         }
+
 
         .gate-left,
         .gate-right {
-            width: 145px;
-            height: 310px;
+
+            width: 150px;
+            height: 315px;
         }
 
-        .gate-middle {
-            height: 310px;
+
+        .wood-panel {
+
+            height: 60px;
+            margin: 20px auto;
         }
 
-        .character {
-            width: 130px;
+
+        .metal-decoration {
+
+            width: 55px;
+            height: 55px;
         }
 
-        .character.walking {
-            left: calc(50% - 200px);
+
+        .welcome-message {
+
+            font-size: 31px;
+        }
+    }
+
+    `;
+
+    document.head.appendChild(style);
+}
+
+
+/*
+==================================================
+NEXT SCENE TRANSITION
+==================================================
+*/
+
+function addPartyTransitionStyles() {
+
+    const style = document.createElement("style");
+
+    style.innerHTML = `
+
+    .party-transition {
+
+        position: fixed;
+        inset: 0;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        background:
+            radial-gradient(
+                circle,
+                #302036,
+                #09060d 70%
+            );
+
+        animation:
+            partyFade 1.5s ease;
+    }
+
+
+    .party-title {
+
+        color: white;
+
+        font-family:
+            "Brush Script MT",
+            "Segoe Script",
+            cursive;
+
+        font-size: clamp(32px, 7vw, 65px);
+
+        text-align: center;
+
+        text-shadow:
+            0 0 20px rgba(255,220,240,.25);
+    }
+
+
+    @keyframes partyFade {
+
+        from {
+            opacity: 0;
         }
 
-        #letsGoButton {
-            right: 20px;
-            bottom: 20px;
+        to {
+            opacity: 1;
         }
     }
 
