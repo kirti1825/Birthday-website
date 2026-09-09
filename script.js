@@ -1767,6 +1767,329 @@ function addPartyStyles() {
         filter: blur(20px);
 
         z-index: 7;
-        
+        .party-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(255, 220, 240, 0.16), transparent 45%),
+        radial-gradient(circle at 20% 30%, rgba(180, 150, 255, 0.12), transparent 40%);
+    z-index: 7;
+    pointer-events: none;
+}
+
+.party-moon {
+    position: absolute;
+    top: 8%;
+    right: 10%;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #fff8df;
+    box-shadow: 0 0 35px rgba(255, 245, 200, 0.55);
+    z-index: 3;
+}
+
+.party-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 7px white;
+    animation: starTwinkle 2.5s ease-in-out infinite alternate;
+    z-index: 2;
+}
+
+.lantern {
+    position: absolute;
+    bottom: -100px;
+    width: 30px;
+    height: 42px;
+    border-radius: 45% 45% 40% 40%;
+    background: linear-gradient(to bottom, #ffd98a, #ff9d58);
+    box-shadow: 0 0 22px rgba(255, 180, 100, 0.8);
+    animation: lanternFloat linear infinite;
+    z-index: 4;
+}
+
+.lantern::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 8px;
+    width: 14px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffd58a;
+}
+
+.lantern::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 10px;
+    width: 10px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ffb45c;
+}
+
+.lantern1  { left:4%;  animation-duration:18s; animation-delay:1s; }
+.lantern2  { left:10%; animation-duration:13s; animation-delay:6s; }
+.lantern3  { left:17%; animation-duration:16s; animation-delay:3s; }
+.lantern4  { left:24%; animation-duration:12s; animation-delay:8s; }
+.lantern5  { left:31%; animation-duration:17s; animation-delay:2s; }
+.lantern6  { left:38%; animation-duration:14s; animation-delay:7s; }
+.lantern7  { left:45%; animation-duration:19s; animation-delay:4s; }
+.lantern8  { left:52%; animation-duration:15s; animation-delay:9s; }
+.lantern9  { left:59%; animation-duration:13s; animation-delay:5s; }
+.lantern10 { left:66%; animation-duration:18s; animation-delay:2s; }
+.lantern11 { left:73%; animation-duration:14s; animation-delay:10s; }
+.lantern12 { left:80%; animation-duration:17s; animation-delay:6s; }
+.lantern13 { left:86%; animation-duration:12s; animation-delay:3s; }
+.lantern14 { left:91%; animation-duration:16s; animation-delay:8s; }
+.lantern15 { left:96%; animation-duration:19s; animation-delay:5s; }
+
+.party-character {
+    position: absolute;
+    bottom: 7%;
+    width: 170px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    z-index: 10;
+}
+
+.party-character.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.party-girl {
+    left: 12%;
+}
+
+.party-boy {
+    right: 12%;
+}
+
+.party-character img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.party-table {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 115px;
+    background: linear-gradient(to bottom, #b97862, #7c493e);
+    border-radius: 18px 18px 10px 10px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+    z-index: 8;
+}
+
+.party-table::before,
+.party-table::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    width: 18px;
+    height: 85px;
+    background: #633b35;
+    border-radius: 8px;
+}
+
+.party-table::before {
+    left: 35px;
+}
+
+.party-table::after {
+    right: 35px;
+}
+
+.cake {
+    position: absolute;
+    bottom: 112px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 125px;
+    height: 70px;
+    z-index: 12;
+}
+
+.cake-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 125px;
+    height: 42px;
+    background: #f4a6bd;
+    border-radius: 10px;
+    box-shadow: inset 0 -8px rgba(190, 90, 125, 0.2);
+}
+
+.cake-top {
+    position: absolute;
+    bottom: 30px;
+    left: 10px;
+    width: 105px;
+    height: 28px;
+    background: #fff0f5;
+    border-radius: 50%;
+}
+
+.cake-cream {
+    position: absolute;
+    bottom: 22px;
+    left: 8px;
+    width: 109px;
+    height: 15px;
+    background: #fff8fb;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.candle {
+    position: absolute;
+    bottom: 53px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 28px;
+    background: #fff;
+    border-radius: 4px;
+    z-index: 5;
+}
+
+.flame {
+    position: absolute;
+    bottom: 79px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 13px;
+    height: 20px;
+    background: #ffd45c;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 0 0 15px rgba(255, 190, 70, 0.9);
+    animation: flameFlicker 0.7s ease-in-out infinite alternate;
+    z-index: 6;
+}
+
+.confetti {
+    position: absolute;
+    top: -20px;
+    width: 8px;
+    height: 15px;
+    animation: confettiFall 3s linear forwards;
+    z-index: 20;
+}
+
+.party-fade {
+    animation: partyFade 2.5s ease forwards;
+}
+
+@keyframes starTwinkle {
+    from { opacity: 0.25; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes lanternFloat {
+    0% {
+        transform: translateY(0) translateX(0) rotate(-3deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-55vh) translateX(20px) rotate(3deg);
+    }
+    100% {
+        transform: translateY(-120vh) translateX(-25px) rotate(-3deg);
+        opacity: 0;
+    }
+}
+
+@keyframes flameFlicker {
+    from {
+        transform: translateX(-50%) scale(0.9);
+    }
+    to {
+        transform: translateX(-50%) scale(1.15);
+    }
+}
+
+@keyframes confettiFall {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes partyFade {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .party-character {
+        width: 125px;
+        bottom: 9%;
+    }
+
+    .party-girl {
+        left: 2%;
+    }
+
+    .party-boy {
+        right: 2%;
+    }
+
+    .party-table {
+        width: 210px;
+        height: 90px;
+    }
+
+    .cake {
+        transform: translateX(-50%) scale(0.8);
+        transform-origin: bottom center;
+    }
+
+    .party-moon {
+        width: 65px;
+        height: 65px;
+        right: 7%;
+    }
+
+    .lantern {
+        width: 23px;
+        height: 34px;
+    }
+}
+`;
+
+    document.head.appendChild(style);
+}
+
+function startGiftScene() {
+    birthdayAnimation.innerHTML = `
+        <div class="next-section-placeholder">
+            <h1>Something special is waiting... 💗</h1>
+        </div>
+    `;
+}
                             
             
