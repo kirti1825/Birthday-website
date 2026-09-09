@@ -1,3 +1,7 @@
+/* =========================================
+   MEMORIES SECTION
+   ========================================= */
+
 function startMemoriesScene() {
 
     const birthdayAnimation =
@@ -6,11 +10,9 @@ function startMemoriesScene() {
     birthdayAnimation.innerHTML = `
         <div class="memories-password-scene">
 
-            <div class="memories-glow"></div>
+            <div class="memories-password-content">
 
-            <div class="password-box">
-
-                <div class="lock-icon">🔐</div>
+                <div class="private-lock">🔐</div>
 
                 <div class="private-title">
                     PRIVATE PAGE
@@ -23,17 +25,27 @@ function startMemoriesScene() {
                 <input
                     type="password"
                     id="memoriesPassword"
+                    class="memories-password-input"
                     placeholder="Enter password"
                     autocomplete="off"
                 >
 
-                <button id="unlockMemories">
+                <button
+                    class="memories-unlock-btn"
+                    onclick="unlockMemories()"
+                >
                     UNLOCK →
                 </button>
 
-                <div id="passwordError"></div>
+                <div
+                    id="memoriesWrongPassword"
+                    class="memories-wrong-password"
+                ></div>
 
-                <button id="backFromMemories" class="memory-back">
+                <button
+                    class="memories-back-btn"
+                    onclick="startMemoryMenu()"
+                >
                     ← Back
                 </button>
 
@@ -43,57 +55,28 @@ function startMemoriesScene() {
     `;
 
     addMemoriesPasswordStyles();
-
-    document
-        .getElementById("unlockMemories")
-        .addEventListener("click", unlockMemories);
-
-    document
-        .getElementById("memoriesPassword")
-        .addEventListener("keydown", function(event) {
-
-            if (event.key === "Enter") {
-                unlockMemories();
-            }
-
-        });
-
-    document
-        .getElementById("backFromMemories")
-        .addEventListener("click", () => {
-            startMemoryMenu();
-        });
 }
 
 
-/* =========================
-   PASSWORD CHECK
-========================= */
+/* =========================================
+   PASSWORD
+   ========================================= */
 
 function unlockMemories() {
 
     const password =
         document.getElementById("memoriesPassword").value;
 
-    const error =
-        document.getElementById("passwordError");
+    const wrong =
+        document.getElementById("memoriesWrongPassword");
 
     if (password === "Kiyan") {
 
-        error.textContent = "";
-
-        const scene =
-            document.querySelector(".memories-password-scene");
-
-        scene.classList.add("memory-unlocking");
-
-        setTimeout(() => {
-            startMemoriesBook();
-        }, 1200);
+        startMemoriesBook();
 
     } else {
 
-        error.textContent =
+        wrong.textContent =
             "Nope. Nice try 😂🔒";
 
         const input =
@@ -108,9 +91,9 @@ function unlockMemories() {
 }
 
 
-/* =========================
-   MEMORY BOOK
-========================= */
+/* =========================================
+   MAIN MEMORIES PAGE
+   ========================================= */
 
 function startMemoriesBook() {
 
@@ -119,300 +102,278 @@ function startMemoriesBook() {
 
     birthdayAnimation.innerHTML = `
 
-        <div class="memories-book-scene">
+        <div class="memories-page">
 
-            <div class="book-stars"></div>
+            <!-- BACKGROUND PAPER -->
 
-            <div class="book-dust">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="paper-cracks"></div>
+            <div class="paper-noise"></div>
+            <div class="paper-glow"></div>
+
+            <!-- FALLING PETALS / LEAVES -->
+
+            <div class="falling-leaves">
+
+                <span>🍂</span>
+                <span>🍁</span>
+                <span>🍂</span>
+                <span>🍁</span>
+                <span>🍂</span>
+                <span>🍁</span>
+                <span>🍂</span>
+                <span>🍁</span>
+                <span>🍂</span>
+                <span>🍁</span>
+
             </div>
 
 
-            <div class="book">
+            <!-- LITTLE DUST PARTICLES -->
 
-                <div class="book-cover">
+            <div class="paper-dust">
 
-                    <div class="book-cover-title">
-                        OUR LITTLE<br>
-                        MEMORIES
-                    </div>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
 
-                    <div class="book-cover-symbol">
-                        ✦
-                    </div>
-
-                </div>
+            </div>
 
 
-                <div class="book-pages">
+            <!-- SCROLLABLE PAPER -->
 
-                    <!-- LEFT PAGE -->
+            <div class="memories-scroll">
 
-                    <div class="book-page left-page">
+                <div class="memory-paper">
 
-                        <div class="page-heading">
-                            Things You Don't Know I Remember… 🍂
+
+                    <!-- =================================
+                         FIRST PART
+                         ================================= -->
+
+                    <section class="memory-section">
+
+                        <div class="memory-small-title">
+                            ✦ A FEW THINGS I REMEMBER ✦
                         </div>
 
-                        <div class="memory-stage">
+                        <h1>
+                            Things You Don't Know
+                            I Remember… 🍂
+                        </h1>
 
-                            <!-- MEMORY 1 -->
-
-                            <div class="memory-item memory-one">
-
-                                <h3>
-                                    The JEE day…
-                                </h3>
-
-                                <p>
-                                    I still remember how I forgot to tell you
-                                    how I was going back home, and you ended up
-                                    waiting for me for so long. I couldn't properly
-                                    tell you anything at that time, and honestly,
-                                    I still feel guilty about making you wait like that. 🥺
-                                </p>
-
-                            </div>
-
-
-                            <!-- MEMORY 2 -->
-
-                            <div class="memory-item memory-two">
-
-                                <h3>
-                                    The Teacher's Day moment…
-                                </h3>
-
-                                <p>
-                                    I still feel guilty for forgetting you weren't
-                                    feeling well and asking you to play tug-of-war.
-                                    I'm sorry. 🫂
-                                </p>
-
-                            </div>
-
-
-                            <!-- MEMORY 3 -->
-
-                            <div class="memory-item memory-three">
-
-                                <h3>
-                                    That jealous moment…
-                                </h3>
-
-                                <p>
-                                    I don't think I've ever forgotten that moment
-                                    when, at tuition, Shreya was reacting to something,
-                                    and me and Anjali got angry and went towards the
-                                    garden area. When we came back, you were talking
-                                    to Shreya and smiling, and honestly… I felt really
-                                    jealous that time.
-                                    <br><br>
-                                    And then you made that paracetamol joke in front
-                                    of sir, and when Shreya laughed at it too, I got
-                                    even more annoyed. 😭 I don't even know whether
-                                    I was more angry at you or at her, but I definitely
-                                    remember how jealous I felt seeing you both talking
-                                    and laughing after everything that had happened.
-                                </p>
-
-                            </div>
-
+                        <div class="memory-divider">
+                            ✦
                         </div>
 
-                    </div>
 
+                        <!-- MEMORY 1 -->
 
-                    <!-- RIGHT PAGE -->
+                        <article class="memory-entry">
 
-                    <div class="book-page right-page">
-
-                        <div class="page-heading">
-                            Things I Would Never Say on Your Face… 🤐
-                        </div>
-
-                        <div class="empty-right-page">
-
-                            <div class="right-page-symbol">
-                                ✦
-                            </div>
+                            <h2>
+                                The JEE day…
+                            </h2>
 
                             <p>
-                                Some things are still waiting
-                                to be written…
+                                I still remember how I forgot to tell you
+                                how I was going back home, and you ended up
+                                waiting for me for so long. I couldn't properly
+                                tell you anything at that time, and honestly,
+                                I still feel guilty about making you wait
+                                like that. 🥺
                             </p>
 
+                        </article>
+
+
+                        <!-- MEMORY 2 -->
+
+                        <article class="memory-entry">
+
+                            <h2>
+                                The Teacher's Day moment…
+                            </h2>
+
+                            <p>
+                                I still feel guilty for forgetting you weren't
+                                feeling well and asking you to play tug-of-war.
+                                I'm sorry. 🫂
+                            </p>
+
+                        </article>
+
+
+                        <!-- MEMORY 3 -->
+
+                        <article class="memory-entry">
+
+                            <h2>
+                                That jealous moment…
+                            </h2>
+
+                            <p>
+                                I don't think I've ever forgotten that moment
+                                when, at tuition, Shreya was reacting to
+                                something, and me and Anjali got angry and
+                                went towards the garden area. When we came
+                                back, you were talking to Shreya and smiling,
+                                and honestly… I felt really jealous that time.
+                            </p>
+
+                            <p>
+                                And then you made that paracetamol joke in
+                                front of sir, and when Shreya laughed at it
+                                too, I got even more annoyed. 😭 I don't even
+                                know whether I was more angry at you or at her,
+                                but I definitely remember how jealous I felt
+                                seeing you both talking and laughing after
+                                everything that had happened.
+                            </p>
+
+                        </article>
+
+                    </section>
+
+
+                    <!-- =================================
+                         SECOND PART
+                         ================================= -->
+
+                    <section class="memory-section second-memory-section">
+
+                        <div class="memory-small-title">
+                            ✦ THE THINGS I NEVER SAY OUT LOUD ✦
                         </div>
 
-                    </div>
+                        <h1>
+                            Things I Would Never Say
+                            on Your Face… 🤐
+                        </h1>
+
+                        <div class="memory-divider">
+                            ✦
+                        </div>
+
+
+                        <!-- THING 1 -->
+
+                        <article class="memory-entry">
+
+                            <h2>
+                                No matter what happens…
+                            </h2>
+
+                            <p>
+                                No matter what situation we're in, or how
+                                things between us may change, one thing will
+                                always remain the same for me—you matter.
+                                More than anything else.
+                            </p>
+
+                            <p>
+                                So please remember that I'll always be there
+                                for you. Whenever you need me, for anything
+                                at all, please don't ever hesitate to come
+                                to me. 🫂
+                            </p>
+
+                        </article>
+
+
+                        <!-- THING 2 -->
+
+                        <article class="memory-entry">
+
+                            <h2>
+                                I need you too…
+                            </h2>
+
+                            <p>
+                                I don't think you could ever imagine just how
+                                much I need you too. I need you in more moments
+                                than I could ever explain, in ways I probably
+                                could never say out loud.
+                            </p>
+
+                            <p>
+                                I won't always be able to tell you this, and
+                                honestly, I probably never will… but I really
+                                hope you'll always be there for me too. 💗
+                            </p>
+
+                        </article>
+
+
+                        <!-- THING 3 -->
+
+                        <article class="memory-entry">
+
+                            <h2>
+                                Please always stay safe…
+                            </h2>
+
+                            <p>
+                                Please, please always stay fine and safe.
+                                Because your happiness and your safety matter
+                                to me more than almost anything else.
+                            </p>
+
+                            <p>
+                                And I think, somewhere deep down, you already
+                                know that. So please take care of yourself,
+                                okay? 🫂💗
+                            </p>
+
+                        </article>
+
+
+                        <!-- FINAL LINE -->
+
+                        <div class="memories-final-line">
+                            Some things you notice only when you really care. 💗
+                        </div>
+
+                    </section>
 
                 </div>
 
             </div>
 
 
-            <div class="memory-final-line">
-                Some things you notice only when you really care. 💗
-            </div>
+            <!-- BACK BUTTON -->
 
-
-            <button class="book-back-button">
-                ← Back to our little universe
+            <button
+                class="memories-page-back"
+                onclick="startMemoryMenu()"
+            >
+                ← Back
             </button>
 
         </div>
     `;
 
-    addMemoriesBookStyles();
-
-
-    /* BOOK OPENS */
-
-    setTimeout(() => {
-
-        const book =
-            document.querySelector(".book");
-
-        if (book) {
-            book.classList.add("book-open");
-        }
-
-    }, 600);
-
-
-    /*
-     * MEMORY 1
-     * Appears first
-     */
-
-    setTimeout(() => {
-
-        const memory =
-            document.querySelector(".memory-one");
-
-        if (memory) {
-            memory.classList.add("memory-visible");
-        }
-
-    }, 2200);
-
-
-    /*
-     * MEMORY 1 DISAPPEARS
-     */
-
-    setTimeout(() => {
-
-        const memory =
-            document.querySelector(".memory-one");
-
-        if (memory) {
-            memory.classList.remove("memory-visible");
-        }
-
-    }, 6500);
-
-
-    /*
-     * MEMORY 2 APPEARS
-     */
-
-    setTimeout(() => {
-
-        const memory =
-            document.querySelector(".memory-two");
-
-        if (memory) {
-            memory.classList.add("memory-visible");
-        }
-
-    }, 7200);
-
-
-    /*
-     * MEMORY 2 DISAPPEARS
-     */
-
-    setTimeout(() => {
-
-        const memory =
-            document.querySelector(".memory-two");
-
-        if (memory) {
-            memory.classList.remove("memory-visible");
-        }
-
-    }, 10500);
-
-
-    /*
-     * MEMORY 3 APPEARS
-     */
-
-    setTimeout(() => {
-
-        const memory =
-            document.querySelector(".memory-three");
-
-        if (memory) {
-            memory.classList.add("memory-visible");
-        }
-
-    }, 11200);
-
-
-    /*
-     * MEMORY 3 STAYS
-     * Then final line appears
-     */
-
-    setTimeout(() => {
-
-        const finalLine =
-            document.querySelector(".memory-final-line");
-
-        if (finalLine) {
-            finalLine.classList.add("final-line-show");
-        }
-
-    }, 16500);
-
-
-    /* BACK BUTTON */
-
-    document
-        .querySelector(".book-back-button")
-        .addEventListener("click", () => {
-
-            startMemoryMenu();
-
-        });
+    addMemoriesPageStyles();
 }
 
 
-/* =========================
-   PASSWORD STYLES
-========================= */
+/* =========================================
+   PASSWORD PAGE STYLES
+   ========================================= */
 
 function addMemoriesPasswordStyles() {
 
-    if (document.getElementById("memoriesPasswordStyles"))
+    if (document.getElementById("memoriesPasswordStyles")) {
         return;
+    }
 
-    const style =
-        document.createElement("style");
+    const style = document.createElement("style");
 
-    style.id =
-        "memoriesPasswordStyles";
+    style.id = "memoriesPasswordStyles";
 
     style.innerHTML = `
 
@@ -425,155 +386,96 @@ function addMemoriesPasswordStyles() {
             align-items: center;
             justify-content: center;
 
-            overflow: hidden;
-
             background:
                 radial-gradient(
-                    circle at 50% 40%,
-                    #39235e 0%,
-                    #1c1235 38%,
-                    #090715 75%,
-                    #04030b 100%
+                    circle at center,
+                    #342329 0%,
+                    #160f15 55%,
+                    #070609 100%
                 );
 
-            color: white;
+            color: #ead9c4;
 
-            z-index: 999;
-
-            transition:
-                opacity 1.2s ease,
-                transform 1.2s ease;
+            z-index: 9999;
         }
 
 
-        .memories-password-scene::before {
+        .memories-password-content {
 
-            content: "✦   ·   ✧   ·   ⋆   ·   ✦   ·   ⋆   ·   ✧";
+            width: min(88%, 420px);
 
-            position: absolute;
-
-            top: 13%;
-            left: 0;
-
-            width: 100%;
-
-            text-align: center;
-
-            font-size: 12px;
-
-            letter-spacing: 9px;
-
-            opacity: .25;
-
-            animation:
-                memoryStarsFloat 8s ease-in-out infinite;
-        }
-
-
-        .memories-glow {
-
-            position: absolute;
-
-            width: 330px;
-            height: 330px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(190,130,255,.16);
-
-            filter: blur(65px);
-
-            animation:
-                memoryGlowPulse 5s ease-in-out infinite;
-        }
-
-
-        .password-box {
-
-            position: relative;
-
-            z-index: 3;
-
-            width: min(88%, 390px);
-
-            padding: 42px 28px 30px;
-
-            border-radius: 28px;
+            padding: 42px 28px;
 
             text-align: center;
 
             background:
-                rgba(255,255,255,.055);
+                rgba(40, 25, 27, .88);
 
             border:
-                1px solid rgba(255,255,255,.12);
-
-            backdrop-filter:
-                blur(18px);
+                1px solid rgba(213, 171, 125, .25);
 
             box-shadow:
-                0 25px 80px rgba(0,0,0,.55),
-                0 0 50px rgba(170,110,255,.10);
+                0 30px 80px rgba(0,0,0,.65),
+                inset 0 0 35px rgba(180,130,90,.04);
+
+            border-radius: 8px;
+
+            backdrop-filter: blur(12px);
         }
 
 
-        .lock-icon {
+        .private-lock {
 
-            font-size: 43px;
+            font-size: 42px;
 
-            margin-bottom: 15px;
-
-            filter:
-                drop-shadow(
-                    0 0 15px
-                    rgba(255,255,255,.3)
-                );
+            margin-bottom: 12px;
         }
 
 
         .private-title {
 
-            font-size: 20px;
+            font-size: 17px;
 
             letter-spacing: 4px;
 
-            font-weight: 700;
-
-            margin-bottom: 10px;
+            color: #dcb78c;
         }
 
 
         .private-subtitle {
 
-            font-size: 14px;
+            margin:
+                12px 0 28px;
 
-            opacity: .7;
+            font-family: Georgia, serif;
 
-            margin-bottom: 28px;
+            font-size: 15px;
+
+            font-style: italic;
+
+            color: #c8b09b;
         }
 
 
-        #memoriesPassword {
+        .memories-password-input {
 
             width: 100%;
 
             box-sizing: border-box;
 
-            padding: 14px 17px;
-
-            border-radius: 14px;
+            padding: 14px 16px;
 
             border:
-                1px solid
-                rgba(255,255,255,.15);
+                1px solid rgba(220,180,135,.25);
+
+            border-radius: 5px;
 
             outline: none;
 
             background:
-                rgba(0,0,0,.25);
+                rgba(5,4,5,.65);
 
-            color: white;
+            color: #f4e4d0;
 
             text-align: center;
 
@@ -581,72 +483,57 @@ function addMemoriesPasswordStyles() {
         }
 
 
-        #memoriesPassword::placeholder {
+        .memories-password-input::placeholder {
 
-            color:
-                rgba(255,255,255,.4);
+            color: #907d70;
         }
 
 
-        #unlockMemories {
+        .memories-unlock-btn {
 
-            width: 100%;
+            margin-top: 16px;
 
-            margin-top: 14px;
+            padding: 12px 25px;
 
-            padding: 14px;
+            border:
+                1px solid rgba(220,180,135,.35);
 
-            border: none;
-
-            border-radius: 14px;
+            border-radius: 4px;
 
             background:
-                rgba(255,255,255,.12);
+                rgba(125,80,45,.25);
 
-            color: white;
+            color: #f2d9b8;
 
-            font-size: 14px;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
+            letter-spacing: 2px;
 
             cursor: pointer;
-
-            transition: .25s ease;
         }
 
 
-        #unlockMemories:active {
+        .memories-wrong-password {
 
-            transform: scale(.97);
-        }
+            min-height: 22px;
 
+            margin-top: 15px;
 
-        #passwordError {
-
-            height: 25px;
-
-            margin-top: 12px;
-
-            color: #ffc8d9;
+            color: #d59682;
 
             font-size: 13px;
         }
 
 
-        .memory-back {
+        .memories-back-btn {
 
-            margin-top: 10px;
+            display: block;
 
-            background: transparent;
+            margin: 22px auto 0;
 
             border: none;
 
-            color:
-                rgba(255,255,255,.55);
+            background: none;
 
-            font-size: 13px;
+            color: #9d8980;
 
             cursor: pointer;
         }
@@ -655,15 +542,7 @@ function addMemoriesPasswordStyles() {
         .password-shake {
 
             animation:
-                passwordShake .4s ease;
-        }
-
-
-        .memory-unlocking {
-
-            opacity: 0;
-
-            transform: scale(1.04);
+                passwordShake .45s ease;
         }
 
 
@@ -677,42 +556,12 @@ function addMemoriesPasswordStyles() {
                 transform: translateX(-8px);
             }
 
-            75% {
+            50% {
                 transform: translateX(8px);
             }
 
-        }
-
-
-        @keyframes memoryGlowPulse {
-
-            0%,100% {
-
-                transform: scale(.9);
-
-                opacity: .55;
-            }
-
-            50% {
-
-                transform: scale(1.15);
-
-                opacity: .9;
-            }
-
-        }
-
-
-        @keyframes memoryStarsFloat {
-
-            0%,100% {
-
-                transform: translateY(0);
-            }
-
-            50% {
-
-                transform: translateY(12px);
+            75% {
+                transform: translateX(-5px);
             }
 
         }
@@ -723,52 +572,60 @@ function addMemoriesPasswordStyles() {
 }
 
 
-/* =========================
-   BOOK STYLES
-========================= */
+/* =========================================
+   MAIN PAPER PAGE STYLES
+   ========================================= */
 
-function addMemoriesBookStyles() {
+function addMemoriesPageStyles() {
 
-    if (document.getElementById("memoriesBookStyles"))
+    if (document.getElementById("memoriesPageStyles")) {
         return;
+    }
 
-    const style =
-        document.createElement("style");
+    const style = document.createElement("style");
 
-    style.id =
-        "memoriesBookStyles";
+    style.id = "memoriesPageStyles";
 
     style.innerHTML = `
 
-        .memories-book-scene {
+        /*
+        =====================================
+        FULL SCREEN PAPER
+        =====================================
+        */
+
+        .memories-page {
 
             position: fixed;
+
             inset: 0;
 
+            width: 100%;
+            height: 100%;
+
             overflow: hidden;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            flex-direction: column;
 
             background:
                 radial-gradient(
                     ellipse at center,
-                    #35233a 0%,
-                    #19121e 45%,
-                    #08070c 100%
+                    #68452c 0%,
+                    #4a2d1c 55%,
+                    #24150d 100%
                 );
 
-            color: #33251c;
+            color: #332015;
 
-            z-index: 999;
+            z-index: 9999;
         }
 
 
-        .memories-book-scene::before {
+        /*
+        =====================================
+        PAPER TEXTURE
+        =====================================
+        */
+
+        .memories-page::before {
 
             content: "";
 
@@ -777,63 +634,338 @@ function addMemoriesBookStyles() {
             inset: 0;
 
             background:
-                radial-gradient(
-                    circle at 50% 48%,
-                    rgba(255,207,125,.12),
-                    transparent 32%
+
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(40,22,12,.07) 0px,
+                    rgba(40,22,12,.07) 1px,
+                    transparent 1px,
+                    transparent 4px
+                ),
+
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(255,220,175,.025) 0px,
+                    rgba(255,220,175,.025) 1px,
+                    transparent 1px,
+                    transparent 6px
                 );
 
             pointer-events: none;
+
+            z-index: 1;
         }
 
 
-        .book-stars {
+        /*
+        =====================================
+        CRACKLES
+        =====================================
+        */
+
+        .paper-cracks {
 
             position: absolute;
 
             inset: 0;
 
-            opacity: .2;
+            opacity: .55;
+
+            pointer-events: none;
+
+            z-index: 2;
+        }
+
+
+        .paper-cracks::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+
+                linear-gradient(
+                    115deg,
+                    transparent 0%,
+                    transparent 35%,
+                    rgba(35,18,9,.20) 35.2%,
+                    transparent 35.5%
+                ),
+
+                linear-gradient(
+                    35deg,
+                    transparent 0%,
+                    transparent 58%,
+                    rgba(35,18,9,.16) 58.2%,
+                    transparent 58.5%
+                ),
+
+                linear-gradient(
+                    155deg,
+                    transparent 0%,
+                    transparent 75%,
+                    rgba(35,18,9,.18) 75.2%,
+                    transparent 75.5%
+                );
+
+            background-size:
+                250px 210px,
+                320px 270px,
+                400px 350px;
+
+            mix-blend-mode: multiply;
+        }
+
+
+        .paper-cracks::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+
+                linear-gradient(
+                    70deg,
+                    transparent 0%,
+                    transparent 44%,
+                    rgba(255,225,185,.10) 44.2%,
+                    transparent 44.5%
+                ),
+
+                linear-gradient(
+                    140deg,
+                    transparent 0%,
+                    transparent 67%,
+                    rgba(40,20,10,.12) 67.2%,
+                    transparent 67.5%
+                );
+
+            background-size:
+                300px 250px,
+                430px 330px;
+        }
+
+
+        /*
+        =====================================
+        VIGNETTE
+        =====================================
+        */
+
+        .memories-page::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            box-shadow:
+                inset 0 0 100px rgba(20,10,5,.65),
+                inset 0 0 230px rgba(15,7,3,.45);
+
+            pointer-events: none;
+
+            z-index: 15;
+        }
+
+
+        /*
+        =====================================
+        SUBTLE GLOW
+        =====================================
+        */
+
+        .paper-glow {
+
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            left: 50%;
+            top: 45%;
+
+            transform:
+                translate(-50%, -50%);
 
             background:
-
                 radial-gradient(
-                    circle at 15% 20%,
-                    white 1px,
-                    transparent 2px
-                ),
-
-                radial-gradient(
-                    circle at 80% 18%,
-                    white 1px,
-                    transparent 2px
-                ),
-
-                radial-gradient(
-                    circle at 70% 75%,
-                    white 1px,
-                    transparent 2px
-                ),
-
-                radial-gradient(
-                    circle at 25% 80%,
-                    white 1px,
-                    transparent 2px
+                    circle,
+                    rgba(255,215,160,.13),
+                    transparent 68%
                 );
+
+            filter: blur(35px);
+
+            pointer-events: none;
+
+            z-index: 3;
         }
 
 
-        .book-dust {
+        /*
+        =====================================
+        PAPER NOISE
+        =====================================
+        */
+
+        .paper-noise {
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                radial-gradient(
+                    rgba(30,16,8,.55) .7px,
+                    transparent .8px
+                );
+
+            background-size: 5px 5px;
+
+            opacity: .14;
+
+            pointer-events: none;
+
+            z-index: 4;
+        }
+
+
+        /*
+        =====================================
+        FALLING LEAVES
+        =====================================
+        */
+
+        .falling-leaves {
 
             position: absolute;
 
             inset: 0;
 
             pointer-events: none;
+
+            z-index: 12;
         }
 
 
-        .book-dust span {
+        .falling-leaves span {
+
+            position: absolute;
+
+            top: -40px;
+
+            font-size: 18px;
+
+            opacity: .55;
+
+            animation:
+                leafFall 10s linear infinite;
+        }
+
+
+        .falling-leaves span:nth-child(1) {
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .falling-leaves span:nth-child(2) {
+            left: 16%;
+            animation-delay: 3s;
+        }
+
+        .falling-leaves span:nth-child(3) {
+            left: 28%;
+            animation-delay: 6s;
+        }
+
+        .falling-leaves span:nth-child(4) {
+            left: 40%;
+            animation-delay: 1s;
+        }
+
+        .falling-leaves span:nth-child(5) {
+            left: 53%;
+            animation-delay: 5s;
+        }
+
+        .falling-leaves span:nth-child(6) {
+            left: 65%;
+            animation-delay: 8s;
+        }
+
+        .falling-leaves span:nth-child(7) {
+            left: 76%;
+            animation-delay: 2s;
+        }
+
+        .falling-leaves span:nth-child(8) {
+            left: 87%;
+            animation-delay: 7s;
+        }
+
+        .falling-leaves span:nth-child(9) {
+            left: 94%;
+            animation-delay: 4s;
+        }
+
+        .falling-leaves span:nth-child(10) {
+            left: 34%;
+            animation-delay: 9s;
+        }
+
+
+        @keyframes leafFall {
+
+            0% {
+
+                transform:
+                    translateY(-40px)
+                    translateX(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: .6;
+            }
+
+            50% {
+
+                transform:
+                    translateY(55vh)
+                    translateX(35px)
+                    rotate(170deg);
+            }
+
+            100% {
+
+                transform:
+                    translateY(110vh)
+                    translateX(-25px)
+                    rotate(340deg);
+
+                opacity: .15;
+            }
+
+        }
+
+
+        /*
+        =====================================
+        DUST
+        =====================================
+        */
+
+        .paper-dust span {
 
             position: absolute;
 
@@ -842,546 +974,493 @@ function addMemoriesBookStyles() {
 
             border-radius: 50%;
 
-            background: #ffe8ad;
-
-            opacity: .5;
+            background:
+                rgba(255,220,175,.55);
 
             animation:
-                bookDustFloat 5s ease-in-out infinite;
+                dustFloat 7s ease-in-out infinite;
+
+            z-index: 13;
         }
 
 
-        .book-dust span:nth-child(1) {
-            left: 15%;
-            top: 25%;
+        .paper-dust span:nth-child(1) {
+            left: 10%;
+            top: 20%;
         }
 
-        .book-dust span:nth-child(2) {
-            left: 28%;
-            top: 70%;
+        .paper-dust span:nth-child(2) {
+            left: 22%;
+            top: 65%;
             animation-delay: 1s;
         }
 
-        .book-dust span:nth-child(3) {
-            left: 72%;
-            top: 30%;
+        .paper-dust span:nth-child(3) {
+            left: 35%;
+            top: 35%;
             animation-delay: 2s;
         }
 
-        .book-dust span:nth-child(4) {
-            left: 84%;
-            top: 65%;
-            animation-delay: .5s;
-        }
-
-        .book-dust span:nth-child(5) {
-            left: 40%;
-            top: 15%;
-            animation-delay: 1.5s;
-        }
-
-        .book-dust span:nth-child(6) {
-            left: 60%;
-            top: 82%;
-            animation-delay: 2.5s;
-        }
-
-        .book-dust span:nth-child(7) {
-            left: 9%;
-            top: 55%;
+        .paper-dust span:nth-child(4) {
+            left: 50%;
+            top: 75%;
             animation-delay: 3s;
         }
 
-        .book-dust span:nth-child(8) {
-            left: 91%;
+        .paper-dust span:nth-child(5) {
+            left: 64%;
+            top: 25%;
+            animation-delay: 1.5s;
+        }
+
+        .paper-dust span:nth-child(6) {
+            left: 78%;
+            top: 55%;
+            animation-delay: 2.5s;
+        }
+
+        .paper-dust span:nth-child(7) {
+            left: 89%;
+            top: 30%;
+            animation-delay: 4s;
+        }
+
+        .paper-dust span:nth-child(8) {
+            left: 43%;
             top: 45%;
-            animation-delay: 1.8s;
-        }
-
-        .book-dust span:nth-child(9) {
-            left: 48%;
-            top: 88%;
-            animation-delay: 3.2s;
-        }
-
-        .book-dust span:nth-child(10) {
-            left: 52%;
-            top: 12%;
-            animation-delay: 2.2s;
+            animation-delay: 4.5s;
         }
 
 
-        .book {
-
-            position: relative;
-
-            width: min(94vw, 850px);
-
-            height: min(70vh, 590px);
-
-            perspective: 1800px;
-
-            transform:
-                scale(.15)
-                rotateX(12deg);
-
-            opacity: 0;
-
-            transition:
-                transform 1.9s
-                cubic-bezier(.2,.8,.2,1),
-
-                opacity 1.2s ease;
-        }
-
-
-        .book-open {
-
-            transform:
-                scale(1)
-                rotateX(0deg);
-
-            opacity: 1;
-        }
-
-
-        .book-cover {
-
-            position: absolute;
-
-            inset: 0;
-
-            border-radius: 8px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #4b3023,
-                    #251810 55%,
-                    #3b251b
-                );
-
-            box-shadow:
-                0 30px 70px rgba(0,0,0,.7),
-
-                inset
-                0 0 0 2px
-                rgba(221,176,100,.25);
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            flex-direction: column;
-
-            color: #e7c982;
-
-            z-index: 5;
-
-            transform-origin: left center;
-
-            transition:
-                transform 1.8s
-                cubic-bezier(.2,.8,.2,1),
-
-                opacity 1.4s ease;
-        }
-
-
-        .book-open .book-cover {
-
-            transform:
-                rotateY(-180deg);
-
-            opacity: 0;
-
-            pointer-events: none;
-        }
-
-
-        .book-cover-title {
-
-            text-align: center;
-
-            font-size: 25px;
-
-            letter-spacing: 5px;
-
-            line-height: 1.6;
-        }
-
-
-        .book-cover-symbol {
-
-            margin-top: 25px;
-
-            font-size: 30px;
-        }
-
-
-        .book-pages {
-
-            position: absolute;
-
-            inset: 0;
-
-            display: flex;
-
-            border-radius: 8px;
-
-            overflow: hidden;
-
-            background: #d8c29b;
-
-            box-shadow:
-                0 30px 70px
-                rgba(0,0,0,.7);
-        }
-
-
-        .book-page {
-
-            position: relative;
-
-            width: 50%;
-
-            padding: 38px 34px;
-
-            box-sizing: border-box;
-
-            overflow: hidden;
-
-            background:
-
-                linear-gradient(
-                    90deg,
-                    rgba(120,82,40,.10),
-                    transparent 10%,
-                    transparent 90%,
-                    rgba(120,82,40,.10)
-                ),
-
-                #ead9b2;
-        }
-
-
-        .left-page {
-
-            border-right:
-                1px solid
-                rgba(80,55,30,.3);
-
-            box-shadow:
-                inset
-                -12px 0 20px
-                rgba(60,35,15,.10);
-        }
-
-
-        .right-page {
-
-            box-shadow:
-                inset
-                12px 0 20px
-                rgba(60,35,15,.10);
-        }
-
-
-        .book-page::before {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 12px;
-
-            border:
-                1px solid
-                rgba(117,83,42,.18);
-
-            pointer-events: none;
-        }
-
-
-        .page-heading {
-
-            position: relative;
-
-            z-index: 2;
-
-            font-family:
-                Georgia, serif;
-
-            font-size:
-                clamp(18px, 2.5vw, 26px);
-
-            line-height: 1.25;
-
-            text-align: center;
-
-            color: #4a3424;
-
-            margin-bottom: 28px;
-        }
-
-
-        .memory-stage {
-
-            position: relative;
-
-            height: calc(100% - 70px);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-        }
-
-
-        .memory-item {
-
-            position: absolute;
-
-            width: 90%;
-
-            opacity: 0;
-
-            transform:
-                translateY(15px);
-
-            transition:
-                opacity 1s ease,
-                transform 1s ease;
-        }
-
-
-        .memory-item.memory-visible {
-
-            opacity: 1;
-
-            transform:
-                translateY(0);
-        }
-
-
-        .memory-item h3 {
-
-            font-family:
-                Georgia, serif;
-
-            font-size: 16px;
-
-            margin:
-                0 0 10px;
-
-            color: #553b26;
-        }
-
-
-        .memory-item p {
-
-            margin: 0;
-
-            font-family:
-                Georgia, serif;
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            color: #493729;
-        }
-
-
-        .empty-right-page {
-
-            position: relative;
-
-            z-index: 2;
-
-            height: calc(100% - 70px);
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            flex-direction: column;
-
-            text-align: center;
-
-            color: #6b513b;
-
-            font-family:
-                Georgia, serif;
-
-            font-style: italic;
-
-            opacity: .65;
-        }
-
-
-        .right-page-symbol {
-
-            font-size: 28px;
-
-            margin-bottom: 20px;
-
-            opacity: .55;
-        }
-
-
-        .empty-right-page p {
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            max-width: 190px;
-        }
-
-
-        .memory-final-line {
-
-            margin-top: 18px;
-
-            color: #e9d5a5;
-
-            font-family:
-                Georgia, serif;
-
-            font-style: italic;
-
-            font-size: 13px;
-
-            opacity: 0;
-
-            transform:
-                translateY(10px);
-
-            transition:
-                1.2s ease;
-        }
-
-
-        .final-line-show {
-
-            opacity: .9;
-
-            transform:
-                translateY(0);
-        }
-
-
-        .book-back-button {
-
-            position: absolute;
-
-            bottom: 18px;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-            padding: 10px 17px;
-
-            border-radius: 20px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.18);
-
-            background:
-                rgba(255,255,255,.07);
-
-            color:
-                rgba(255,255,255,.75);
-
-            cursor: pointer;
-
-            backdrop-filter:
-                blur(10px);
-        }
-
-
-        @keyframes bookDustFloat {
+        @keyframes dustFloat {
 
             0%,100% {
 
                 transform:
-                    translate(0,0);
+                    translateY(0);
 
-                opacity: .2;
+                opacity: .15;
             }
 
             50% {
 
                 transform:
-                    translate(8px,-18px);
+                    translateY(-18px);
 
-                opacity: .7;
+                opacity: .65;
             }
+
         }
 
 
-        @media (max-width: 650px) {
+        /*
+        =====================================
+        SCROLL CONTAINER
+        =====================================
+        */
 
-            .book {
+        .memories-scroll {
 
-                width: 94vw;
+            position: relative;
 
-                height: 70vh;
+            width: 100%;
+
+            height: 100%;
+
+            overflow-y: auto;
+
+            overflow-x: hidden;
+
+            scroll-behavior: smooth;
+
+            z-index: 8;
+
+            -webkit-overflow-scrolling: touch;
+        }
+
+
+        /*
+        =====================================
+        ONE CONTINUOUS PAPER
+        =====================================
+        */
+
+        .memory-paper {
+
+            position: relative;
+
+            width: min(92%, 900px);
+
+            min-height: 100%;
+
+            margin: 0 auto;
+
+            padding:
+                85px 45px 130px;
+
+            box-sizing: border-box;
+
+            background:
+
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255,225,185,.18),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(75,40,20,.12),
+                    transparent 35%
+                ),
+
+                #9a704b;
+
+            box-shadow:
+                0 0 70px rgba(20,10,4,.5);
+
+            border-left:
+                1px solid rgba(60,30,12,.25);
+
+            border-right:
+                1px solid rgba(60,30,12,.25);
+        }
+
+
+        /*
+        =====================================
+        PAPER EDGES
+        =====================================
+        */
+
+        .memory-paper::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0px,
+                    transparent 7px,
+                    rgba(65,35,18,.025) 8px
+                );
+
+            pointer-events: none;
+        }
+
+
+        /*
+        =====================================
+        SECTION
+        =====================================
+        */
+
+        .memory-section {
+
+            position: relative;
+
+            text-align: center;
+
+            padding-bottom: 40px;
+        }
+
+
+        .second-memory-section {
+
+            margin-top: 90px;
+
+            padding-top: 70px;
+        }
+
+
+        /*
+        =====================================
+        HEADINGS
+        =====================================
+        */
+
+        .memory-small-title {
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
+
+            font-weight: 700;
+
+            color: #56351f;
+
+            margin-bottom: 17px;
+        }
+
+
+        .memory-section h1 {
+
+            max-width: 720px;
+
+            margin:
+                0 auto;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                clamp(29px, 6vw, 52px);
+
+            line-height: 1.2;
+
+            font-weight: 500;
+
+            color: #352014;
+
+            text-shadow:
+                0 1px 0 rgba(255,230,195,.2);
+        }
+
+
+        .memory-divider {
+
+            margin:
+                28px auto 60px;
+
+            color: #5a3922;
+
+            font-size: 18px;
+
+            opacity: .7;
+        }
+
+
+        /*
+        =====================================
+        EACH MEMORY STAYS
+        =====================================
+        */
+
+        .memory-entry {
+
+            max-width: 730px;
+
+            margin:
+                0 auto 65px;
+
+            text-align: left;
+
+            opacity: 0;
+
+            transform:
+                translateY(22px);
+
+            animation:
+                memoryAppear 1.2s ease forwards;
+        }
+
+
+        .memory-entry:nth-of-type(2) {
+            animation-delay: .5s;
+        }
+
+
+        .memory-entry:nth-of-type(3) {
+            animation-delay: 1s;
+        }
+
+
+        .second-memory-section .memory-entry:nth-of-type(2) {
+            animation-delay: 1.5s;
+        }
+
+
+        .second-memory-section .memory-entry:nth-of-type(3) {
+            animation-delay: 2s;
+        }
+
+
+        .second-memory-section .memory-entry:nth-of-type(4) {
+            animation-delay: 2.5s;
+        }
+
+
+        @keyframes memoryAppear {
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
             }
 
+        }
 
-            .book-page {
+
+        .memory-entry h2 {
+
+            margin:
+                0 0 20px;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                clamp(21px, 4vw, 29px);
+
+            font-weight: 600;
+
+            color: #402719;
+        }
+
+
+        .memory-entry p {
+
+            margin:
+                0 0 20px;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                clamp(16px, 3.6vw, 20px);
+
+            line-height: 1.9;
+
+            color: #382519;
+
+            text-align: left;
+        }
+
+
+        /*
+        =====================================
+        FINAL LINE
+        =====================================
+        */
+
+        .memories-final-line {
+
+            margin-top: 90px;
+
+            padding-top: 45px;
+
+            border-top:
+                1px solid rgba(75,45,25,.35);
+
+            font-family:
+                "Brush Script MT",
+                "Segoe Script",
+                cursive;
+
+            font-size: 22px;
+
+            color: #50321f;
+
+            text-align: center;
+        }
+
+
+        /*
+        =====================================
+        BACK BUTTON
+        =====================================
+        */
+
+        .memories-page-back {
+
+            position: fixed;
+
+            left: 18px;
+
+            bottom: 18px;
+
+            z-index: 30;
+
+            padding:
+                9px 15px;
+
+            border:
+                1px solid rgba(230,195,155,.2);
+
+            border-radius: 5px;
+
+            background:
+                rgba(45,25,14,.55);
+
+            color: #ead4b6;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(6px);
+        }
+
+
+        /*
+        =====================================
+        PHONE
+        =====================================
+        */
+
+        @media (max-width: 600px) {
+
+            .memory-paper {
+
+                width: 94%;
 
                 padding:
-                    28px 17px;
+                    70px 25px 110px;
             }
 
 
-            .page-heading {
+            .memory-small-title {
+
+                letter-spacing: 2.5px;
+
+                font-size: 9px;
+            }
+
+
+            .memory-divider {
+
+                margin-bottom: 45px;
+            }
+
+
+            .memory-entry {
+
+                margin-bottom: 55px;
+            }
+
+
+            .memory-entry p {
 
                 font-size: 16px;
 
-                margin-bottom: 15px;
+                line-height: 1.8;
             }
 
 
-            .memory-item {
+            .second-memory-section {
 
-                width: 92%;
+                margin-top: 50px;
+
+                padding-top: 55px;
             }
 
 
-            .memory-item p {
+            .memories-final-line {
 
-                font-size: 11.2px;
-
-                line-height: 1.55;
-            }
-
-
-            .memory-item h3 {
-
-                font-size: 14px;
-            }
-
-
-            .book-cover-title {
-
-                font-size: 20px;
-            }
-
-
-            .empty-right-page p {
-
-                font-size: 11px;
+                font-size: 19px;
             }
 
         }
