@@ -3,7 +3,7 @@ const openingScreen = document.querySelector(".opening-screen");
 const birthdayAnimation = document.getElementById("birthdayAnimation");
 
 enterButton.addEventListener("click", () => {
-    
+    startBackgroundMusic();
     enterButton.disabled = true;
     enterButton.textContent = "OPENING...";
 
