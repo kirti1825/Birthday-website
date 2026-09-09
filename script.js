@@ -1480,7 +1480,6 @@ touch-action: manipulation;
 
 
 /* DON'T MOVE THIS */
-@keyframes lanternRise {
     @keyframes lanternRise {
 
         0% {
