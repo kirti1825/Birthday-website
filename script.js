@@ -2308,13 +2308,8 @@ function startGiftScene() {
 
     addScorecardStyles();
 
-    setTimeout(() => {
-        document.querySelector(".score-info").classList.add("show");
-    }, 4000);
-
-    setTimeout(() => {
-        document.querySelector(".reaction").classList.add("show");
-    }, 7000);
+    document.querySelector(".score-info").classList.add("show");
+document.querySelector(".reaction").classList.add("show");
             }
 
 function addScorecardStyles() {
