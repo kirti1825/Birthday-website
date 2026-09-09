@@ -114,13 +114,9 @@ function startMemoryMenu() {
     startQuizScene();
 });
 
-    document
-        .querySelector(".movie-card")
-        .addEventListener("click", () => {
-
-            console.log("Movie section clicked");
-
-        });
+    document.querySelector(".movie-card").addEventListener("click", () => {
+    startMovieScene();
+});
 
 
     document
