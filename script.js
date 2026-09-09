@@ -832,7 +832,6 @@ function addGateStyles() {
 PART 2 — LANTERN NIGHT PARTY
 ==================================================
 */
-
 function startPartyScene() {
 
     birthdayAnimation.innerHTML = `
@@ -850,6 +849,10 @@ function startPartyScene() {
                 <span></span><span></span><span></span><span></span>
                 <span></span><span></span><span></span>
             </div>
+
+            <div class="birthday-title">
+    Happy Birthday Aryan 🌷
+</div>
 
 
             <!-- FLOATING LANTERNS -->
@@ -878,6 +881,7 @@ function startPartyScene() {
                     <div class="lantern-body"></div>
                     <div class="lantern-glow"></div>
                 </div>
+
 
                 <div class="lantern lantern5">
                     <div class="lantern-top"></div>
@@ -1020,6 +1024,22 @@ function startPartyScene() {
 
     addPartyStyles();
 
+    document.querySelectorAll(".lantern").forEach(lantern => {
+    lantern.addEventListener("click", () => {
+        if (lantern.classList.contains("popped")) return;
+
+        lantern.classList.add("popped");
+
+        const glow = document.createElement("div");
+        glow.className = "lantern-pop";
+        lantern.appendChild(glow);
+
+        setTimeout(() => {
+            lantern.remove();
+        }, 450);
+    });
+});
+
 
     /* GIRL APPEARS */
     setTimeout(() => {
@@ -1153,34 +1173,28 @@ function addPartyStyles() {
     ========================= */
 
     .party-moon {
-        position: absolute;
+    position: absolute;
+    top: 8%;
+    right: 10%;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #fff8df;
+    box-shadow: 0 0 35px rgba(255, 245, 200, 0.55);
+    z-index: 3;
+    overflow: hidden;
+}
 
-        width: 105px;
-        height: 105px;
-
-        right: 12%;
-        top: 9%;
-
-        border-radius: 50%;
-
-        background:
-            radial-gradient(
-                circle at 35% 30%,
-                #fffefa,
-                #eee7e8 65%,
-                #d7ced2
-            );
-
-        box-shadow:
-            0 0 20px rgba(255,255,255,.22),
-            0 0 60px rgba(255,225,245,.18);
-
-        z-index: 3;
-
-        animation:
-            partyMoonGlow 4s ease-in-out infinite alternate;
-    }
-
+.party-moon::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 25px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #07101f;
+}
 
     @keyframes partyMoonGlow {
 
@@ -1266,7 +1280,7 @@ function addPartyStyles() {
         position: absolute;
         inset: 0;
         z-index: 5;
-        pointer-events: none;
+        pointer-events: auto;
     }
 
 
@@ -1282,6 +1296,10 @@ function addPartyStyles() {
 
         animation:
             lanternRise linear infinite;
+
+            cursor: pointer;
+touch-action: manipulation;
+
     }
 
 
@@ -1358,8 +1376,111 @@ function addPartyStyles() {
     .lantern13 { left:86%; animation-duration:12s; animation-delay:3s; }
     .lantern14 { left:91%; animation-duration:16s; animation-delay:8s; }
     .lantern15 { left:96%; animation-duration:19s; animation-delay:5s; }
+    
+.lantern.popped {
+    animation: lanternPop 0.45s ease-out forwards !important;
+    pointer-events: none;
+}
+
+.lantern-pop {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #fff7cf;
+    box-shadow:
+        0 0 10px #fff7cf,
+        0 0 25px #ffd98a,
+        0 0 40px #ffc96d;
+    transform: translate(-50%, -50%);
+    animation: lanternGlow 0.45s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes lanternPop {
+    0% {
+        transform: scale(1);
+        opacity: .9;
+    }
+
+    45% {
+        transform: scale(1.35);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes lanternGlow {
+    0% {
+        transform: translate(-50%, -50%) scale(.3);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+.birthday-title {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+    text-align: center;
+
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 52px;
+    font-weight: 500;
+    letter-spacing: 2px;
+
+    color: #fff4f8;
+
+    text-shadow:
+        0 0 6px rgba(255, 235, 245, .8),
+        0 0 18px rgba(255, 190, 220, .65),
+        0 0 35px rgba(255, 160, 210, .35);
+
+    z-index: 7;
+
+    animation: birthdayGlow 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes birthdayGlow {
+    0%, 100% {
+        opacity: .85;
+        text-shadow:
+            0 0 6px rgba(255, 235, 245, .7),
+            0 0 18px rgba(255, 190, 220, .5);
+    }
+
+    50% {
+        opacity: 1;
+        text-shadow:
+            0 0 8px rgba(255, 245, 250, 1),
+            0 0 22px rgba(255, 190, 220, .8),
+            0 0 40px rgba(255, 160, 210, .5);
+    }
+}
+
+@media (max-width: 600px) {
+    .birthday-title {
+        font-size: 36px;
+        letter-spacing: 1px;
+    }
+}
 
 
+/* DON'T MOVE THIS */
+@keyframes lanternRise {
     @keyframes lanternRise {
 
         0% {
