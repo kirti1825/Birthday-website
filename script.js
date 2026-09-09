@@ -2307,9 +2307,10 @@ function startGiftScene() {
     `;
 
     addScorecardStyles();
-
+setTimeout(() => {
     document.querySelector(".score-info").classList.add("show");
 document.querySelector(".reaction").classList.add("show");
+    
             }
 
 function addScorecardStyles() {
@@ -2380,11 +2381,21 @@ function addScorecardStyles() {
     }
 
     .score-info {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: scoreInfoAppear 0.7s ease forwards;
+    animation-delay: 2s;
+}
+@keyframes scoreInfoAppear {
+    from {
         opacity: 0;
         transform: translateY(12px);
-        transition: .7s ease;
     }
-
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
     .score-info.show {
         opacity: 1;
         transform: translateY(0);
@@ -2434,14 +2445,22 @@ function addScorecardStyles() {
     }
 
     .reaction {
-        margin-top: 24px;
-
+    margin-top: 24px;
+    opacity: 0;
+    transform: translateY(15px) scale(.96);
+    animation: reactionAppear 0.8s ease forwards;
+    animation-delay: 2s;
+}
+@keyframes reactionAppear {
+    from {
         opacity: 0;
         transform: translateY(15px) scale(.96);
-
-        transition: .8s ease;
     }
-
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
     .reaction.show {
         opacity: 1;
         transform: translateY(0) scale(1);
