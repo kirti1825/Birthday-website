@@ -2306,15 +2306,7 @@ function startGiftScene() {
         </div>
     `;
 
-    
-
-function addScorecardStyles() {
-    addScorecardStyles();
-
-document.querySelector(".score-info").classList.add("show");
-document.querySelector(".reaction").classList.add("show");
-}
-
+    function addScorecardStyles() {
 
     const style = document.createElement("style");
 
@@ -2382,11 +2374,6 @@ document.querySelector(".reaction").classList.add("show");
     }
 
     .score-info {
-    opacity: 0;
-    transform: translateY(12px);
-    transition: .7s ease;
-}
-    .score-info.show {
         opacity: 1;
         transform: translateY(0);
     }
@@ -2435,15 +2422,8 @@ document.querySelector(".reaction").classList.add("show");
     }
 
     .reaction {
-    margin-top: 24px;
+        margin-top: 24px;
 
-    opacity: 0;
-    transform: translateY(15px) scale(.96);
-
-    transition: .8s ease;
-}
-
-    .reaction.show {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
@@ -2503,3 +2483,6 @@ document.querySelector(".reaction").classList.add("show");
 
     document.head.appendChild(style);
 }
+
+}
+    
