@@ -766,10 +766,12 @@ function addMovieStyles() {
 
         .villain-shake {
 
-            animation:
-                villainShake
-                .55s ease;
-        }
+    opacity: 1 !important;
+
+    animation:
+        villainShake
+        .55s ease;
+}
 
 
         @keyframes villainShake {
