@@ -825,3 +825,895 @@ function addGateStyles() {
 
     document.head.appendChild(style);
 }
+/* =========================
+   PART 2 — NIGHT PARTY
+========================= */
+
+function startPartyScene() {
+
+    const scene = document.getElementById("birthdayAnimation");
+
+    scene.innerHTML = `
+        <div class="party-scene">
+
+            <!-- DARK NIGHT SKY -->
+            <div class="party-stars"></div>
+            <div class="party-moon"></div>
+
+            <!-- FLOATING LANTERNS -->
+            <div class="lanterns">
+                <div class="lantern l1"></div>
+                <div class="lantern l2"></div>
+                <div class="lantern l3"></div>
+                <div class="lantern l4"></div>
+                <div class="lantern l5"></div>
+                <div class="lantern l6"></div>
+                <div class="lantern l7"></div>
+            </div>
+
+            <!-- GROUND -->
+            <div class="party-ground"></div>
+
+            <!-- COLOURFUL BALLOONS -->
+            <div class="balloons left">
+                <span class="balloon pink"></span>
+                <span class="balloon yellow"></span>
+                <span class="balloon blue"></span>
+                <span class="balloon purple"></span>
+            </div>
+
+            <div class="balloons right">
+                <span class="balloon blue"></span>
+                <span class="balloon pink"></span>
+                <span class="balloon yellow"></span>
+                <span class="balloon purple"></span>
+            </div>
+
+            <!-- TABLE -->
+            <div class="party-table">
+
+                <div class="table-top"></div>
+
+                <div class="table-cloth"></div>
+
+                <!-- CAKE -->
+                <div class="cake">
+
+                    <div class="candle">
+                        <div class="flame"></div>
+                    </div>
+
+                    <div class="cake-top"></div>
+                    <div class="cake-body"></div>
+                    <div class="cake-cream"></div>
+
+                </div>
+
+            </div>
+
+            <!-- BOTH OF YOU -->
+            <div class="party-characters">
+
+                <img
+                    src="IMG_20260908_213133.png"
+                    class="girl-party"
+                    alt=""
+                >
+
+                <img
+                    src="IMG_20260908_212512.png"
+                    class="boy-party"
+                    alt=""
+                >
+
+            </div>
+
+            <!-- SOFT LIGHT AROUND PARTY -->
+            <div class="party-glow"></div>
+
+            <!-- FADE TO NEXT PAGE -->
+            <div class="party-fade"></div>
+
+        </div>
+    `;
+
+    addPartyStyles();
+
+    /* YOU ENTER FIRST */
+    setTimeout(() => {
+        document.querySelector(".girl-party").classList.add("party-character-show");
+    }, 300);
+
+    /* BOY ENTERS AFTER YOU */
+    setTimeout(() => {
+        document.querySelector(".boy-party").classList.add("party-character-show");
+    }, 900);
+
+    /* LITTLE CELEBRATION / DANCE */
+    setTimeout(() => {
+        document
+            .querySelector(".party-characters")
+            .classList.add("little-dance");
+    }, 3000);
+
+    /* STOP DANCING */
+    setTimeout(() => {
+        document
+            .querySelector(".party-characters")
+            .classList.remove("little-dance");
+    }, 5200);
+
+    /* SLOW FADE */
+    setTimeout(() => {
+        document
+            .querySelector(".party-fade")
+            .classList.add("fade-start");
+    }, 6200);
+
+    /*
+       NEXT PAGE WILL BE CONNECTED HERE
+       AFTER WE BUILD THE 5 MYSTERIOUS CARDS.
+    */
+
+    setTimeout(() => {
+        startGiftScene();
+    }, 8200);
+}
+
+
+/* =========================
+   PART 2 STYLES
+========================= */
+
+function addPartyStyles() {
+
+    const style = document.createElement("style");
+
+    style.innerHTML = `
+
+        .party-scene {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 45%,
+                    #252d59 0%,
+                    #11162f 42%,
+                    #070a19 75%,
+                    #02030a 100%
+                );
+
+            animation: partyAppear 1.8s ease forwards;
+        }
+
+
+        /* =====================
+           STARS
+        ===================== */
+
+        .party-stars {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                radial-gradient(circle, white 1px, transparent 1.5px),
+                radial-gradient(circle, white 1px, transparent 1.5px),
+                radial-gradient(circle, white 1px, transparent 1.5px);
+
+            background-size:
+                95px 95px,
+                150px 150px,
+                210px 210px;
+
+            background-position:
+                10px 20px,
+                50px 100px,
+                130px 40px;
+
+            opacity: .7;
+
+            animation: starsTwinkle 4s ease-in-out infinite alternate;
+        }
+
+
+        /* =====================
+           MOON
+        ===================== */
+
+        .party-moon {
+            position: absolute;
+
+            top: 9%;
+            right: 12%;
+
+            width: 78px;
+            height: 78px;
+
+            border-radius: 50%;
+
+            background: #fff6d1;
+
+            box-shadow:
+                0 0 20px rgba(255,246,209,.7),
+                0 0 55px rgba(255,230,160,.35),
+                0 0 100px rgba(255,220,150,.15);
+        }
+
+
+        /* =====================
+           LANTERNS
+        ===================== */
+
+        .lanterns {
+            position: absolute;
+            inset: 0;
+
+            pointer-events: none;
+        }
+
+        .lantern {
+            position: absolute;
+
+            width: 24px;
+            height: 33px;
+
+            border-radius:
+                50% 50% 45% 45%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #fff5bd 0%,
+                    #ffc45e 40%,
+                    #ff9650 68%,
+                    transparent 100%
+                );
+
+            box-shadow:
+                0 0 12px rgba(255,205,100,.8),
+                0 0 35px rgba(255,170,70,.35);
+
+            opacity: 0;
+
+            animation: lanternUp 13s linear infinite;
+        }
+
+        .lantern::after {
+            content: "";
+
+            position: absolute;
+
+            left: 8px;
+            bottom: -5px;
+
+            width: 8px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #ffd36d;
+
+            box-shadow: 0 0 10px #ffb64d;
+        }
+
+        .l1 {
+            left: 10%;
+            bottom: -50px;
+            animation-delay: 0s;
+        }
+
+        .l2 {
+            left: 23%;
+            bottom: -80px;
+            animation-delay: 4s;
+        }
+
+        .l3 {
+            left: 38%;
+            bottom: -40px;
+            animation-delay: 7s;
+        }
+
+        .l4 {
+            left: 53%;
+            bottom: -100px;
+            animation-delay: 2s;
+        }
+
+        .l5 {
+            left: 68%;
+            bottom: -70px;
+            animation-delay: 5s;
+        }
+
+        .l6 {
+            left: 81%;
+            bottom: -50px;
+            animation-delay: 8s;
+        }
+
+        .l7 {
+            left: 91%;
+            bottom: -90px;
+            animation-delay: 3s;
+        }
+
+
+        @keyframes lanternUp {
+
+            0% {
+                transform:
+                    translateY(0)
+                    translateX(0)
+                    scale(.7);
+
+                opacity: 0;
+            }
+
+            12% {
+                opacity: .85;
+            }
+
+            70% {
+                opacity: .7;
+            }
+
+            100% {
+                transform:
+                    translateY(-120vh)
+                    translateX(35px)
+                    scale(1);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================
+           GROUND
+        ===================== */
+
+        .party-ground {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 38%;
+
+            background:
+                radial-gradient(
+                    ellipse at center top,
+                    rgba(150,110,180,.28),
+                    transparent 65%
+                ),
+                linear-gradient(
+                    180deg,
+                    rgba(30,24,48,.15),
+                    rgba(3,4,12,.85)
+                );
+        }
+
+
+        /* =====================
+           BALLOONS
+        ===================== */
+
+        .balloons {
+            position: absolute;
+
+            bottom: 5%;
+
+            display: flex;
+            align-items: flex-end;
+
+            gap: 5px;
+
+            z-index: 5;
+        }
+
+        .balloons.left {
+            left: 4%;
+        }
+
+        .balloons.right {
+            right: 4%;
+        }
+
+        .balloon {
+            position: relative;
+
+            display: block;
+
+            width: 36px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 8px 15px rgba(0,0,0,.3),
+                inset -6px -8px 12px rgba(0,0,0,.12);
+
+            animation:
+                balloonFloat 2.5s ease-in-out infinite alternate;
+        }
+
+        .balloon::after {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            bottom: -23px;
+
+            width: 1px;
+            height: 25px;
+
+            background: rgba(255,255,255,.35);
+        }
+
+        .pink {
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    #fff,
+                    #ff9ec8 35%,
+                    #d95791
+                );
+        }
+
+        .yellow {
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    #fff,
+                    #ffe98b 35%,
+                    #e7a93d
+                );
+        }
+
+        .blue {
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    #fff,
+                    #91d9ff 35%,
+                    #548bc8
+                );
+        }
+
+        .purple {
+            background:
+                radial-gradient(
+                    circle at 30% 25%,
+                    #fff,
+                    #c8a1ff 35%,
+                    #8056b7
+                );
+        }
+
+        .balloon:nth-child(2) {
+            width: 31px;
+            height: 42px;
+            animation-delay: .4s;
+        }
+
+        .balloon:nth-child(3) {
+            width: 41px;
+            height: 54px;
+            animation-delay: .8s;
+        }
+
+        .balloon:nth-child(4) {
+            width: 30px;
+            height: 41px;
+            animation-delay: 1.2s;
+        }
+
+        @keyframes balloonFloat {
+
+            from {
+                transform:
+                    translateY(2px)
+                    rotate(-3deg);
+            }
+
+            to {
+                transform:
+                    translateY(-8px)
+                    rotate(3deg);
+            }
+        }
+
+
+        /* =====================
+           TABLE
+        ===================== */
+
+        .party-table {
+            position: absolute;
+
+            left: 50%;
+            bottom: 12%;
+
+            transform: translateX(-50%);
+
+            width: 175px;
+            height: 120px;
+
+            z-index: 7;
+        }
+
+        .table-top {
+            position: absolute;
+
+            top: 0;
+
+            width: 100%;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #d99bc8,
+                    #8c547f
+                );
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,.4);
+        }
+
+        .table-cloth {
+            position: absolute;
+
+            top: 16px;
+            left: 15px;
+            right: 15px;
+
+            height: 100px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #633b5d,
+                    #a56791,
+                    #633b5d
+                );
+
+            clip-path:
+                polygon(
+                    0 0,
+                    100% 0,
+                    88% 100%,
+                    12% 100%
+                );
+        }
+
+
+        /* =====================
+           CAKE
+        ===================== */
+
+        .cake {
+            position: absolute;
+
+            left: 50%;
+            top: -29px;
+
+            transform: translateX(-50%);
+
+            width: 70px;
+            height: 70px;
+
+            z-index: 10;
+        }
+
+        .cake-body {
+            position: absolute;
+
+            left: 5px;
+            bottom: 5px;
+
+            width: 60px;
+            height: 38px;
+
+            border-radius: 8px 8px 12px 12px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f2b9d7,
+                    #b96199
+                );
+        }
+
+        .cake-top {
+            position: absolute;
+
+            left: 4px;
+            top: 22px;
+
+            width: 62px;
+            height: 25px;
+
+            border-radius: 50%;
+
+            background: #ffe1ed;
+
+            z-index: 2;
+        }
+
+        .cake-cream {
+            position: absolute;
+
+            left: 10px;
+            top: 37px;
+
+            width: 52px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #fff1f8;
+
+            z-index: 3;
+        }
+
+        .candle {
+            position: absolute;
+
+            left: 50%;
+            top: 3px;
+
+            transform: translateX(-50%);
+
+            width: 6px;
+            height: 25px;
+
+            background: #f8e5aa;
+
+            z-index: 5;
+        }
+
+        .flame {
+            position: absolute;
+
+            left: 50%;
+            top: -15px;
+
+            transform: translateX(-50%);
+
+            width: 10px;
+            height: 15px;
+
+            border-radius: 50%;
+
+            background: #ffd36b;
+
+            box-shadow:
+                0 0 12px #ffcc66,
+                0 0 25px rgba(255,160,70,.6);
+
+            animation: flameMove .6s infinite alternate;
+        }
+
+        @keyframes flameMove {
+
+            from {
+                transform:
+                    translateX(-50%)
+                    scale(.9);
+            }
+
+            to {
+                transform:
+                    translateX(-50%)
+                    scale(1.15);
+            }
+        }
+
+
+        /* =====================
+           CHARACTERS
+        ===================== */
+
+        .party-characters {
+            position: absolute;
+
+            left: 50%;
+            bottom: 9%;
+
+            transform: translateX(-50%);
+
+            width: 330px;
+            height: 260px;
+
+            z-index: 8;
+        }
+
+        .party-characters img {
+            position: absolute;
+
+            bottom: 0;
+
+            width: 125px;
+            height: auto;
+
+            opacity: 0;
+
+            transition:
+                opacity 1.2s ease,
+                transform 1.2s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .girl-party {
+            left: 5px;
+            transform: translateX(-70px);
+        }
+
+        .boy-party {
+            right: 5px;
+            transform: translateX(70px);
+        }
+
+        .party-character-show {
+            opacity: 1 !important;
+
+            transform: translateX(0) !important;
+        }
+
+
+        /* =====================
+           LITTLE DANCE
+        ===================== */
+
+        .little-dance .girl-party {
+            animation:
+                girlLittleDance .8s ease-in-out infinite alternate;
+        }
+
+        .little-dance .boy-party {
+            animation:
+                boyLittleDance .8s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes girlLittleDance {
+
+            from {
+                transform:
+                    translateY(0)
+                    rotate(-3deg);
+            }
+
+            to {
+                transform:
+                    translateY(-10px)
+                    rotate(3deg);
+            }
+        }
+
+        @keyframes boyLittleDance {
+
+            from {
+                transform:
+                    translateY(0)
+                    rotate(3deg);
+            }
+
+            to {
+                transform:
+                    translateY(-10px)
+                    rotate(-3deg);
+            }
+        }
+
+
+        /* =====================
+           SOFT PARTY LIGHT
+        ===================== */
+
+        .party-glow {
+            position: absolute;
+
+            left: 50%;
+            bottom: 18%;
+
+            width: 330px;
+            height: 180px;
+
+            transform: translateX(-50%);
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(238,176,220,.2),
+                    transparent 70%
+                );
+
+            filter: blur(10px);
+
+            pointer-events: none;
+        }
+
+
+        /* =====================
+           FADE
+        ===================== */
+
+        .party-fade {
+            position: absolute;
+
+            inset: 0;
+
+            background: #03030a;
+
+            opacity: 0;
+
+            z-index: 50;
+
+            pointer-events: none;
+
+            transition:
+                opacity 2s ease;
+        }
+
+        .fade-start {
+            opacity: 1;
+        }
+
+
+        /* =====================
+           ENTRANCE
+        ===================== */
+
+        @keyframes partyAppear {
+
+            from {
+                opacity: 0;
+                transform: scale(1.04);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes starsTwinkle {
+
+            from {
+                opacity: .35;
+            }
+
+            to {
+                opacity: .85;
+            }
+        }
+
+    `;
+
+    document.head.appendChild(style);
+}
+
+
+/* =========================
+   TEMPORARY PART 3
+========================= */
+
+function startGiftScene() {
+
+    const scene = document.getElementById("birthdayAnimation");
+
+    scene.innerHTML = `
+        <div style="
+            position:absolute;
+            inset:0;
+            background:#080512;
+        "></div>
+    `;
+}
