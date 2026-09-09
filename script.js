@@ -1068,7 +1068,7 @@ document.querySelectorAll(".lantern").forEach(lantern => {
     if (document.querySelector(".party-scene")) {
         startScorecardScene(poppedLanterns, totalLanterns);
     }
-}, 12000);
+}, 17000);
 
     /* GIRL APPEARS */
     setTimeout(() => {
@@ -2310,11 +2310,11 @@ function startGiftScene() {
 
     setTimeout(() => {
         document.querySelector(".score-info").classList.add("show");
-    }, 2200);
+    }, 4000);
 
     setTimeout(() => {
         document.querySelector(".reaction").classList.add("show");
-    }, 4000);
+    }, 7000);
             }
 
 function addScorecardStyles() {
