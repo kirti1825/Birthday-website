@@ -2306,14 +2306,15 @@ function startGiftScene() {
         </div>
     `;
 
+    
+
+function addScorecardStyles() {
     addScorecardStyles();
 setTimeout(() => {
     document.querySelector(".score-info").classList.add("show");
 document.querySelector(".reaction").classList.add("show");
-    
-            }
+    }
 
-function addScorecardStyles() {
 
     const style = document.createElement("style");
 
