@@ -110,14 +110,9 @@ function startMemoryMenu() {
     startLetterScene();
 });
 
-    document
-        .querySelector(".quiz-card")
-        .addEventListener("click", () => {
-
-            console.log("Quiz section clicked");
-
-        });
-
+    document.querySelector(".quiz-card").addEventListener("click", () => {
+    startQuizScene();
+});
 
     document
         .querySelector(".movie-card")
