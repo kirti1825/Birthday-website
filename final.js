@@ -9,6 +9,7 @@
    ========================================================= */
 
 function startVoiceScene() {
+   pauseBackgroundMusic();
 
     const birthdayAnimation = document.getElementById("birthdayAnimation");
 
@@ -953,7 +954,7 @@ function setupVoicePlayers() {
 
                         currentAudio = null;
                         currentButton = null;
-
+resumeBackgroundMusic();
                     }
                 );
 
