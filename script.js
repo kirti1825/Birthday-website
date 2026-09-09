@@ -2305,6 +2305,9 @@ function startGiftScene() {
     `;
 
     addScorecardStyles();
+            setTimeout(() => {
+    startMemoryMenu();
+}, 10000);
 }
 
 
