@@ -1122,7 +1122,7 @@ document.querySelectorAll(".lantern").forEach(lantern => {
             fade.classList.add("fade-in");
         }
 
-    }, 15500);
+    }, 20000);
 
 
     /*
@@ -1132,7 +1132,7 @@ document.querySelectorAll(".lantern").forEach(lantern => {
 
         startGiftScene();
 
-    }, 18300);
+    }, 23000);
 
 }
 
