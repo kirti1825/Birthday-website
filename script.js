@@ -1034,11 +1034,23 @@ function startPartyScene() {
 
     addPartyStyles();
 
-    document.querySelectorAll(".lantern").forEach(lantern => {
+    let poppedLanterns = 0;
+const totalLanterns = 15;
+
+document.querySelectorAll(".lantern").forEach(lantern => {
+
     lantern.addEventListener("click", () => {
+
         if (lantern.classList.contains("popped")) return;
 
         lantern.classList.add("popped");
+
+        poppedLanterns++;
+        if (poppedLanterns === totalLanterns) {
+    setTimeout(() => {
+        startScorecardScene(poppedLanterns, totalLanterns);
+    }, 700);
+}
 
         const glow = document.createElement("div");
         glow.className = "lantern-pop";
@@ -1047,9 +1059,16 @@ function startPartyScene() {
         setTimeout(() => {
             lantern.remove();
         }, 450);
+
     });
+
 });
 
+    setTimeout(() => {
+    if (document.querySelector(".party-scene")) {
+        startScorecardScene(poppedLanterns, totalLanterns);
+    }
+}, 12000);
 
     /* GIRL APPEARS */
     setTimeout(() => {
@@ -2222,4 +2241,269 @@ function startGiftScene() {
     `;
 }
                             
-            
+            function startScorecardScene(score, total) {
+
+    let message;
+    let image;
+
+    if (score <= 6) {
+        message = "Buddhu 😠🔪";
+        image = "d3d6fa10820fb004a022245ed8a93705~3.jpg";
+    } else if (score <= 10) {
+        message = "Good, good… not bad! You can come 😌";
+        image = "f52eadd484299a0ad4ec6d0c9183ca44~2.jpg";
+    } else {
+        message = "Hehee cutieee 💐🤭";
+        image = "52aff701a1029da44ddfaaa70b55472a~2.jpg";
+    }
+
+    birthdayAnimation.innerHTML = `
+        <div class="scorecard-scene">
+
+            <div class="score-stars"></div>
+
+            <div class="scorecard">
+
+                <div class="score-title">
+                    ✨ LANTERN GAME ✨
+                </div>
+
+                <div class="typing-line">
+                    You made it through the night...
+                </div>
+
+                <div class="score-info">
+
+                    <div class="score-row">
+                        <span>🏮 LANTERNS IN THE SKY</span>
+                        <strong>${total}</strong>
+                    </div>
+
+                    <div class="score-row">
+                        <span>💥 LANTERNS YOU POPPED</span>
+                        <strong>${score}</strong>
+                    </div>
+
+                    <div class="final-score">
+                        <small>✨ YOUR SCORE ✨</small>
+                        <div>${score} / ${total}</div>
+                    </div>
+
+                </div>
+
+                <div class="reaction">
+
+                    <div class="reaction-message">
+                        ${message}
+                    </div>
+
+                    <img src="${image}" alt="">
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+    addScorecardStyles();
+
+    setTimeout(() => {
+        document.querySelector(".score-info").classList.add("show");
+    }, 2200);
+
+    setTimeout(() => {
+        document.querySelector(".reaction").classList.add("show");
+    }, 4000);
+            }
+
+function addScorecardStyles() {
+
+    const style = document.createElement("style");
+
+    style.textContent = `
+
+    .scorecard-scene {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        background:
+            radial-gradient(circle at 50% 30%, #18294d 0%, #07101f 45%, #02050d 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .scorecard-scene::before {
+        content: "✦  ·  ✧  ·  ⋆  ·  ✦  ·  ⋆  ·  ✧  ·  ✦";
+        position: absolute;
+        top: 12%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: rgba(255,255,255,.65);
+        font-size: 18px;
+        letter-spacing: 18px;
+        animation: scoreStars 3s ease-in-out infinite alternate;
+    }
+
+    .scorecard {
+        width: min(88%, 430px);
+        padding: 30px 24px;
+        border-radius: 28px;
+
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.18);
+
+        box-shadow:
+            0 0 35px rgba(170,190,255,.12),
+            inset 0 0 25px rgba(255,255,255,.03);
+
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+
+        text-align: center;
+        color: white;
+    }
+
+    .score-title {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+
+        text-shadow:
+            0 0 10px rgba(255,255,255,.6),
+            0 0 25px rgba(190,210,255,.4);
+    }
+
+    .typing-line {
+        font-size: 15px;
+        color: rgba(255,255,255,.78);
+        margin-bottom: 26px;
+    }
+
+    .score-info {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: .7s ease;
+    }
+
+    .score-info.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .score-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 12px 4px;
+
+        border-bottom: 1px solid rgba(255,255,255,.1);
+
+        font-size: 14px;
+    }
+
+    .score-row strong {
+        font-size: 22px;
+        text-shadow: 0 0 12px rgba(255,255,255,.7);
+    }
+
+    .final-score {
+        margin-top: 22px;
+        padding: 18px;
+
+        border-radius: 20px;
+
+        background: rgba(255,255,255,.06);
+    }
+
+    .final-score small {
+        display: block;
+        font-size: 12px;
+        letter-spacing: 2px;
+        margin-bottom: 5px;
+        opacity: .8;
+    }
+
+    .final-score div {
+        font-size: 42px;
+        font-weight: 700;
+
+        text-shadow:
+            0 0 10px rgba(255,255,255,.8),
+            0 0 30px rgba(190,210,255,.55);
+    }
+
+    .reaction {
+        margin-top: 24px;
+
+        opacity: 0;
+        transform: translateY(15px) scale(.96);
+
+        transition: .8s ease;
+    }
+
+    .reaction.show {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    .reaction-message {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .reaction img {
+        width: 145px;
+        max-width: 65%;
+        border-radius: 18px;
+
+        box-shadow:
+            0 0 25px rgba(255,255,255,.18);
+    }
+
+    @keyframes scoreStars {
+        from {
+            opacity: .35;
+            transform: translateY(0);
+        }
+
+        to {
+            opacity: .9;
+            transform: translateY(-8px);
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .scorecard {
+            width: 86%;
+            padding: 26px 19px;
+        }
+
+        .score-title {
+            font-size: 21px;
+        }
+
+        .score-row {
+            font-size: 12px;
+        }
+
+        .final-score div {
+            font-size: 36px;
+        }
+
+        .reaction-message {
+            font-size: 18px;
+        }
+    }
+
+    `;
+
+    document.head.appendChild(style);
+}
