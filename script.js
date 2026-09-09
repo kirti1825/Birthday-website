@@ -2310,10 +2310,10 @@ function startGiftScene() {
 
 function addScorecardStyles() {
     addScorecardStyles();
-setTimeout(() => {
-    document.querySelector(".score-info").classList.add("show");
+
+document.querySelector(".score-info").classList.add("show");
 document.querySelector(".reaction").classList.add("show");
-    }
+}
 
 
     const style = document.createElement("style");
@@ -2384,19 +2384,8 @@ document.querySelector(".reaction").classList.add("show");
     .score-info {
     opacity: 0;
     transform: translateY(12px);
-    animation: scoreInfoAppear 0.7s ease forwards;
-    animation-delay: 2s;
+    transition: .7s ease;
 }
-@keyframes scoreInfoAppear {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-} 
     .score-info.show {
         opacity: 1;
         transform: translateY(0);
@@ -2447,21 +2436,13 @@ document.querySelector(".reaction").classList.add("show");
 
     .reaction {
     margin-top: 24px;
+
     opacity: 0;
     transform: translateY(15px) scale(.96);
-    animation: reactionAppear 0.8s ease forwards;
-    animation-delay: 2s;
+
+    transition: .8s ease;
 }
-@keyframes reactionAppear {
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(.96);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
+
     .reaction.show {
         opacity: 1;
         transform: translateY(0) scale(1);
