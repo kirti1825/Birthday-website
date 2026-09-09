@@ -2492,7 +2492,7 @@ function onYouTubeIframeAPIReady() {
             autoplay: 0,
             controls: 0,
             playsinline: 1,
-            rel: 0
+            rel: 0,
             loop: 1,
     playlist: "sABVNz31WA0"
         },
