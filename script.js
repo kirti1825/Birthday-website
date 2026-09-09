@@ -3,6 +3,7 @@ const openingScreen = document.querySelector(".opening-screen");
 const birthdayAnimation = document.getElementById("birthdayAnimation");
 
 enterButton.addEventListener("click", () => {
+    startBackgroundMusic();
     enterButton.disabled = true;
     enterButton.textContent = "OPENING...";
 
@@ -2473,3 +2474,57 @@ function addScorecardStyles() {
     document.head.appendChild(style);
 }    
         
+/* =========================================================
+   BACKGROUND MUSIC — SHINUNOGA E-WA
+   ========================================================= */
+
+let backgroundMusicPlayer = null;
+let youtubeAPIReady = false;
+let musicStarted = false;
+
+function onYouTubeIframeAPIReady() {
+    youtubeAPIReady = true;
+
+    backgroundMusicPlayer = new YT.Player("youtubeMusicPlayer", {
+        videoId: "sABVNz31WA0",
+
+        playerVars: {
+            autoplay: 0,
+            controls: 0,
+            playsinline: 1,
+            rel: 0
+        },
+
+        events: {
+            onReady: function(event) {
+                event.target.setVolume(45);
+            }
+        }
+    });
+}
+
+function startBackgroundMusic() {
+
+    if (!backgroundMusicPlayer || !youtubeAPIReady) {
+        return;
+    }
+
+    if (!musicStarted) {
+        musicStarted = true;
+        backgroundMusicPlayer.playVideo();
+    }
+}
+
+function pauseBackgroundMusic() {
+
+    if (backgroundMusicPlayer) {
+        backgroundMusicPlayer.pauseVideo();
+    }
+}
+
+function resumeBackgroundMusic() {
+
+    if (backgroundMusicPlayer) {
+        backgroundMusicPlayer.playVideo();
+    }
+}
