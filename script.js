@@ -1510,7 +1510,7 @@ touch-action: manipulation;
                 translateX(-15px)
                 rotate(-3deg);
 
-            opacity: 0;
+            opacity: .9;
         }
     }
 
