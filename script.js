@@ -1125,14 +1125,7 @@ document.querySelectorAll(".lantern").forEach(lantern => {
     }, 20000);
 
 
-    /*
-     * NEXT SECTION
-     */
-    setTimeout(() => {
-
-        startGiftScene();
-
-    }, 23000);
+    
 
 }
 
