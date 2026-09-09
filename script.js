@@ -2226,13 +2226,7 @@ touch-action: manipulation;
     document.head.appendChild(style);
 }
 
-function startGiftScene() {
-    birthdayAnimation.innerHTML = `
-        <div class="next-section-placeholder">
-            <h1>Something special is waiting... 💗</h1>
-        </div>
-    `;
-}
+
                             
         function startScorecardScene(score, total) {
 
