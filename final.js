@@ -9,7 +9,7 @@
    ========================================================= */
 
 function startVoiceScene() {
-   pauseBackgroundMusic();
+   
 
     const birthdayAnimation = document.getElementById("birthdayAnimation");
 
@@ -873,7 +873,7 @@ function setupVoicePlayers() {
     buttons.forEach(function(button) {
 
         button.addEventListener("click", function() {
-
+pauseBackgroundMusic();
             const audioFile =
                 button.dataset.audio;
 
