@@ -1107,7 +1107,7 @@ document.querySelectorAll(".lantern").forEach(lantern => {
             confetti.classList.add("confetti-blast");
         }
 
-    }, 12000);
+    }, 27000);
 
 
     /*
@@ -2241,7 +2241,7 @@ function startGiftScene() {
     `;
 }
                             
-            function startScorecardScene(score, total) {
+        function startScorecardScene(score, total) {
 
     let message;
     let image;
@@ -2259,8 +2259,6 @@ function startGiftScene() {
 
     birthdayAnimation.innerHTML = `
         <div class="scorecard-scene">
-
-            <div class="score-stars"></div>
 
             <div class="scorecard">
 
@@ -2306,7 +2304,11 @@ function startGiftScene() {
         </div>
     `;
 
-    function addScorecardStyles() {
+    addScorecardStyles();
+}
+
+
+function addScorecardStyles() {
 
     const style = document.createElement("style");
 
@@ -2322,19 +2324,8 @@ function startGiftScene() {
         align-items: center;
         justify-content: center;
         z-index: 9999;
-    }
-
-    .scorecard-scene::before {
-        content: "✦  ·  ✧  ·  ⋆  ·  ✦  ·  ⋆  ·  ✧  ·  ✦";
-        position: absolute;
-        top: 12%;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        color: rgba(255,255,255,.65);
-        font-size: 18px;
-        letter-spacing: 18px;
-        animation: scoreStars 3s ease-in-out infinite alternate;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
     .scorecard {
@@ -2354,6 +2345,7 @@ function startGiftScene() {
 
         text-align: center;
         color: white;
+        box-sizing: border-box;
     }
 
     .score-title {
@@ -2361,7 +2353,6 @@ function startGiftScene() {
         font-weight: 700;
         letter-spacing: 2px;
         margin-bottom: 16px;
-
         text-shadow:
             0 0 10px rgba(255,255,255,.6),
             0 0 25px rgba(190,210,255,.4);
@@ -2382,11 +2373,8 @@ function startGiftScene() {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         padding: 12px 4px;
-
         border-bottom: 1px solid rgba(255,255,255,.1);
-
         font-size: 14px;
     }
 
@@ -2398,9 +2386,7 @@ function startGiftScene() {
     .final-score {
         margin-top: 22px;
         padding: 18px;
-
         border-radius: 20px;
-
         background: rgba(255,255,255,.06);
     }
 
@@ -2415,7 +2401,6 @@ function startGiftScene() {
     .final-score div {
         font-size: 42px;
         font-weight: 700;
-
         text-shadow:
             0 0 10px rgba(255,255,255,.8),
             0 0 30px rgba(190,210,255,.55);
@@ -2423,7 +2408,6 @@ function startGiftScene() {
 
     .reaction {
         margin-top: 24px;
-
         opacity: 1;
         transform: translateY(0) scale(1);
     }
@@ -2435,12 +2419,27 @@ function startGiftScene() {
     }
 
     .reaction img {
+        display: block;
         width: 145px;
         max-width: 65%;
+        height: auto;
+        margin: 0 auto;
         border-radius: 18px;
+        box-shadow: 0 0 25px rgba(255,255,255,.18);
+    }
 
-        box-shadow:
-            0 0 25px rgba(255,255,255,.18);
+    .scorecard-scene::before {
+        content: "✦  ·  ✧  ·  ⋆  ·  ✦  ·  ⋆  ·  ✧  ·  ✦";
+        position: absolute;
+        top: 12%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: rgba(255,255,255,.65);
+        font-size: 18px;
+        letter-spacing: 18px;
+        animation: scoreStars 3s ease-in-out infinite alternate;
+        pointer-events: none;
     }
 
     @keyframes scoreStars {
@@ -2458,7 +2457,7 @@ function startGiftScene() {
     @media (max-width: 600px) {
 
         .scorecard {
-            width: 86%;
+            width: 92%;
             padding: 26px 19px;
         }
 
@@ -2482,7 +2481,5 @@ function startGiftScene() {
     `;
 
     document.head.appendChild(style);
-}
-
-}
-    
+}    
+        
