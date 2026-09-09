@@ -226,32 +226,42 @@ function addGateStyles() {
     /* =========================
        MOON
     ========================= */
+.moon {
+    position: absolute;
 
-    .moon {
-        position: absolute;
+    width: 90px;
+    height: 90px;
 
-        width: 105px;
-        height: 105px;
+    right: 10%;
+    top: 8%;
 
-        right: 13%;
-        top: 10%;
+    border-radius: 50%;
 
-        border-radius: 50%;
+    background: #fff8df;
 
-        background:
-            radial-gradient(
-                circle at 35% 30%,
-                #fffdfb,
-                #eee6e6 65%,
-                #d7ced1
-            );
+    box-shadow:
+        0 0 35px rgba(255, 245, 200, 0.55);
 
-        box-shadow:
-            0 0 20px rgba(255,255,255,.22),
-            0 0 55px rgba(255,235,250,.12);
+    z-index: 3;
+    overflow: hidden;
+}
 
-        animation: moonGlow 4s ease-in-out infinite alternate;
-    }
+.moon::after {
+    content: "";
+
+    position: absolute;
+
+    top: -5px;
+    left: 25px;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background: #07101f;
+}
+    
 
 
     @keyframes moonGlow {
