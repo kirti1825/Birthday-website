@@ -106,14 +106,9 @@ function startMemoryMenu() {
        sections later.
        ----------------------------------------- */
 
-    document
-        .querySelector(".letter-card")
-        .addEventListener("click", () => {
-
-            console.log("Letter section clicked");
-
-        });
-
+    document.querySelector(".letter-card").addEventListener("click", () => {
+    startLetterScene();
+});
 
     document
         .querySelector(".quiz-card")
