@@ -854,21 +854,7 @@ function startPartyScene() {
             <!-- GROUND -->
             <div class="party-ground"></div>
 
-            <!-- COLOURFUL BALLOONS -->
-            <div class="balloons left">
-                <span class="balloon pink"></span>
-                <span class="balloon yellow"></span>
-                <span class="balloon blue"></span>
-                <span class="balloon purple"></span>
-            </div>
-
-            <div class="balloons right">
-                <span class="balloon blue"></span>
-                <span class="balloon pink"></span>
-                <span class="balloon yellow"></span>
-                <span class="balloon purple"></span>
-            </div>
-
+            
             <!-- TABLE -->
             <div class="party-table">
 
@@ -1403,14 +1389,14 @@ function addPartyStyles() {
             position: absolute;
 
             left: 50%;
-            top: -29px;
+            top: -42px;
 
             transform: translateX(-50%);
 
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 85px;
 
-            z-index: 10;
+            z-index: 20;
         }
 
         .cake-body {
