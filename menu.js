@@ -118,14 +118,10 @@ function startMemoryMenu() {
     startMovieScene();
 });
 
-
-    document
-        .querySelector(".memories-card")
-        .addEventListener("click", () => {
-
-            console.log("Memories section clicked");
-
-        });
+document.querySelector(".memories-card").addEventListener("click", () => {
+    startMemoriesScene();
+});
+    
 
 
     document
